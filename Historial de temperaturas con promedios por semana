@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int semanas = 2;
+    const int dias = 7;
+    double temps[semanas][dias];
+
+    for (int s = 0; s < semanas; s++) {
+        cout << "\nSemana " << s + 1 << endl;
+        for (int d = 0; d < dias; d++) {
+            cout << "Temperatura día " << d + 1 << ": ";
+            cin >> temps[s][d];
+        }
+    }
+
+    for (int s = 0; s < semanas; s++) {
+        double suma = 0;
+        for (int d = 0; d < dias; d++) {
+            suma += temps[s][d];
+        }
+        cout << "Promedio semana " << s + 1 << ": " << suma / dias << "°C\n";
+    }
+
+    return 0;
+}

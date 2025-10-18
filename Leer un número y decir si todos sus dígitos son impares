@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+    bool todosImpares = true;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    while (num > 0) {
+        int dig = num % 10;
+        if (dig % 2 == 0) {
+            todosImpares = false;
+            break;
+        }
+        num /= 10;
+    }
+
+    if (todosImpares)
+        cout << "Todos los dígitos son impares." << endl;
+    else
+        cout << "No todos los dígitos son impares." << endl;
+
+    return 0;
+}

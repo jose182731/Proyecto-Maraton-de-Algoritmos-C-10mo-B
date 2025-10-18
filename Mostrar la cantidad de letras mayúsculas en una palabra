@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra;
+    int mayus = 0;
+
+    cout << "Ingrese una palabra: ";
+    cin >> palabra;
+
+    for (char c : palabra) {
+        if (isupper(c)) {
+            mayus++;
+        }
+    }
+
+    cout << "Tiene " << mayus << " letra(s) mayúscula(s)." << endl;
+    return 0;
+}

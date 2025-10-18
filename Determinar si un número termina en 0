@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    if (num % 10 == 0)
+        cout << "El número termina en 0." << endl;
+    else
+        cout << "El número no termina en 0." << endl;
+
+    return 0;
+}

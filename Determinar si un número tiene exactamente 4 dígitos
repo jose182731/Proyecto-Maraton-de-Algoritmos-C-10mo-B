@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    if (num >= 1000 && num <= 9999)
+        cout << "Tiene 4 dígitos." << endl;
+    else
+        cout << "No tiene 4 dígitos." << endl;
+
+    return 0;
+}

@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float nota1, nota2, nota3;
+    cout << "Ingrese tres notas: ";
+    cin >> nota1 >> nota2 >> nota3;
+
+    float promedio = (nota1 + nota2 + nota3) / 3;
+    cout << "Promedio: " << promedio << endl;
+
+    if (promedio >= 60)
+        cout << "Aprobado" << endl;
+    else
+        cout << "Reprobado" << endl;
+
+    return 0;
+}

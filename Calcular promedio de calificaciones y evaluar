@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+double calcularPromedio(double* notas, int n) {
+    double suma = 0;
+    for (int i = 0; i < n; i++) suma += notas[i];
+    return suma / n;
+}
+
+string evaluarRendimiento(double promedio) {
+    if (promedio >= 9) return "Excelente";
+    if (promedio >= 7) return "Bueno";
+    if (promedio >= 5) return "Regular";
+    return "Insuficiente";
+}
+
+int main() {
+    int n;
+    cout << "Ingrese cantidad de calificaciones: ";
+    cin >> n;
+
+    double* notas = new double[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Nota #" << (i + 1) << ": ";
+        cin >> notas[i];
+    }
+
+    double promedio = calcularPromedio(notas, n);
+    cout << "\nPromedio: " << promedio << endl;
+    cout << "Rendimiento: " << evaluarRendimiento(promedio) << endl;
+
+    delete[] notas;
+    return 0;
+}

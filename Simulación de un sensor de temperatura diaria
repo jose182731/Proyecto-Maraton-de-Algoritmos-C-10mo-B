@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    srand(time(0));
+    const int dias = 7;
+    double temperaturas[dias];
+
+    cout << "Temperaturas de los últimos 7 días:\n";
+    for (int i = 0; i < ias; i++) {
+        temperaturas[i] = rand() % 16 + 15; // entre 15 y 30 grados
+        cout << "Día " << (i + 1) << ": " << temperaturas[i] << "°C\n";
+    }
+
+    double suma = 0, max = temperaturas[0], min = temperaturas[0];
+    for (int i = 0; i < dias; i++) {
+        suma += temperaturas[i];
+        if (temperaturas[i] > max) max = temperaturas[i];
+        if (temperaturas[i] < min) min = temperaturas[i];
+    }
+
+    cout << "\nPromedio: " << suma / dias << "°C\n";
+    cout << "Máxima: " << max << "°C\n";
+    cout << "Mínima: " << min << "°C\n";
+
+    return 0;
+}

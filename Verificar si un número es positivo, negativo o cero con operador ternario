@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero;
+    cout << "Ingrese un número: ";
+    cin >> numero;
+
+    string resultado = (numero > 0) ? "Positivo" : (numero < 0 ? "Negativo" : "Cero");
+    cout << "Resultado: " << resultado << endl;
+
+    return 0;
+}

@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    char c;
+    cout << "Ingrese 10 caracteres:\n";
+
+    for (int i = 0; i < 10; i++) {
+        cin >> c;
+        if (isdigit(c)) {
+            cout << "Dígito encontrado: " << c << endl;
+        }
+    }
+
+    return 0;
+}

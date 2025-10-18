@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra, codificada = "";
+    cout << "Ingrese una palabra: ";
+    cin >> palabra;
+
+    for (char c : palabra) {
+        switch (tolower(c)) {
+            case 'a': codificada += '1'; break;
+            case 'e': codificada += '2'; break;
+            case 'i': codificada += '3'; break;
+            case 'o': codificada += '4'; break;
+            case 'u': codificada += '5'; break;
+            default: codificada += c;
+        }
+    }
+
+    cout << "Palabra codificada: " << codificada << endl;
+    return 0;
+}

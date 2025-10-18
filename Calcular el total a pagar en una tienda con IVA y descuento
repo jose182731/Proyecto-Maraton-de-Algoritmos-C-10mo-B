@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float precio, iva = 0.16, descuento = 0.10;
+    cout << "Ingrese el precio del producto: ";
+    cin >> precio;
+
+    float total = precio + (precio * iva);
+    total -= total * descuento;
+
+    cout << "Total a pagar con IVA y descuento: $" << total << endl;
+    return 0;
+}

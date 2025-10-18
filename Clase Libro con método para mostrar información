@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+class Libro {
+public:
+    string titulo;
+    string autor;
+    int anio;
+
+    void mostrar() {
+        cout << "Título: " << titulo << "\nAutor: " << autor << "\nAño: " << anio << endl;
+    }
+};
+
+int main() {
+    Libro l;
+    l.titulo = "1984";
+    l.autor = "George Orwell";
+    l.anio = 1949;
+    l.mostrar();
+    return 0;
+}

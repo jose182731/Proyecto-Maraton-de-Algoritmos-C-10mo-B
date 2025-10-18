@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int cantidad;
+    float precio, total = 0;
+
+    cout << "Ingrese cuántos productos comprará: ";
+    cin >> cantidad;
+
+    for (int i = 1; i <= cantidad; i++) {
+        cout << "Precio del producto " << i << ": ";
+        cin >> precio;
+        total += precio;
+    }
+
+    cout << "Total a pagar: $" << total << endl;
+    return 0;
+}

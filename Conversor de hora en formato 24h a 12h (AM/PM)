@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int hora24, minutos;
+    cout << "Ingrese hora (formato 24h): ";
+    cin >> hora24;
+    cout << "Minutos: ";
+    cin >> minutos;
+
+    string periodo = (hora24 >= 12) ? "PM" : "AM";
+    int hora12 = (hora24 == 0) ? 12 : (hora24 > 12 ? hora24 - 12 : hora24);
+
+    cout << "Hora en formato 12h: " << hora12 << ":" << (minutos < 10 ? "0" : "") << minutos << " " << periodo << endl;
+
+    return 0;
+}

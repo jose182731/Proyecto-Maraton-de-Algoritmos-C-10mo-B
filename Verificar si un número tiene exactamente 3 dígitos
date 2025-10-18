@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero;
+    cout << "Ingrese un número: ";
+    cin >> numero;
+
+    if (numero >= 100 && numero <= 999)
+        cout << "Tiene 3 dígitos." << endl;
+    else
+        cout << "No tiene 3 dígitos." << endl;
+
+    return 0;
+}

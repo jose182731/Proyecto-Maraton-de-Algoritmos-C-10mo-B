@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nombre;
+    cout << "Ingrese su nombre completo: ";
+    getline(cin, nombre);
+
+    int letras = 0;
+    for (char c : nombre) {
+        if (c != ' ')
+            letras++;
+    }
+
+    cout << "Tu nombre tiene " << letras << " letras (sin contar espacios)." << endl;
+    return 0;
+}

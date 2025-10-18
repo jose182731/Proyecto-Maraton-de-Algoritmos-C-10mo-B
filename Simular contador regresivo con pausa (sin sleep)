@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int inicio;
+    cout << "Ingrese el número desde donde contar atrás: ";
+    cin >> inicio;
+
+    for (int i = inicio; i >= 0; i--) {
+        cout << i << "..." << endl;
+        for (volatile int j = 0; j < 100000000; ++j); // pausa simulada
+    }
+
+    cout << "¡Tiempo finalizado!" << endl;
+    return 0;
+}

@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num, cifras = 0;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    if (num == 0) cifras = 1;
+    while (num != 0) {
+        cifras++;
+        num /= 10;
+    }
+
+    cout << "Cantidad de cifras: " << cifras << endl;
+    return 0;
+}

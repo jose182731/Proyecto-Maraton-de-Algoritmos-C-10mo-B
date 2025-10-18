@@ -1,0 +1,13 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int nums[10];
+    cout << "Ingrese 10 números:\n";
+    for (int i = 0; i < 10; i++) cin >> nums[i];
+
+    sort(nums, nums + 10);
+    cout << "El segundo mayor es: " << nums[8] << endl;
+    return 0;
+}

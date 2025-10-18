@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int nota, aprobadas = 0;
+
+    for (int i = 1; i <= 4; i++) {
+        cout << "Ingrese nota " << i << ": ";
+        cin >> nota;
+        if (nota >= 6) aprobadas++;
+    }
+
+    cout << "Cantidad de notas aprobadas: " << aprobadas << endl;
+    return 0;
+}

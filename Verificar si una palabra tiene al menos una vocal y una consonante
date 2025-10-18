@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra;
+    bool tieneVocal = false, tieneConsonante = false;
+
+    cout << "Ingrese una palabra: ";
+    cin >> palabra;
+
+    for (char c : palabra) {
+        char ch = tolower(c);
+        if (isalpha(ch)) {
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+                tieneVocal = true;
+            else
+                tieneConsonante = true;
+        }
+    }
+
+    if (tieneVocal && tieneConsonante)
+        cout << "Tiene vocal y consonante." << endl;
+    else
+        cout << "No cumple con ambas condiciones." << endl;
+
+    return 0;
+}

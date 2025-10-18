@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string frase;
+    cout << "Ingrese una frase: ";
+    getline(cin, frase);
+
+    int espacios = 0;
+    for (char c : frase) {
+        if (c == ' ')
+            espacios++;
+    }
+
+    cout << "Cantidad de espacios: " << espacios << endl;
+    return 0;
+}

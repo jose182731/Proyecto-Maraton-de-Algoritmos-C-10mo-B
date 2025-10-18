@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float lado;
+    cout << "Ingrese el lado del cubo: ";
+    cin >> lado;
+
+    float volumen = lado * lado * lado;
+    cout << "El volumen del cubo es: " << volumen << endl;
+    return 0;
+}

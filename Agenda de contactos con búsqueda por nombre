@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX = 100;
+
+struct Contacto {
+    string nombre;
+    string telefono;
+    string email;
+};
+
+void mostrarContacto(const Contacto& c) {
+    cout << "Nombre: " << c.nombre << "\nTeléfono: " << c.telefono << "\nEmail: " << c.email << endl;
+}
+
+int buscarContacto(Contacto agenda[], int n, const string& nombreBuscado) {
+    for (int i = 0; i < n; i++) {
+        if (agenda[i].nombre == nombreBuscado)
+            return i;
+    }
+    return -1;
+}
+
+int main() {
+    Contacto agenda[MAX];
+    int cantidad = 0;
+    int opcion;
+    string nombre;
+
+    do {
+        cout << "\n1. Agregar contacto\n2. Buscar contacto\n3. Ver todos\n0. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1 && cantidad < MAX) {
+            cout << "Nombre: ";
+            getline(cin, agenda[cantidad].nombre);
+            cout << "Teléfono: ";
+            getline(cin, agenda[cantidad].telefono);
+            cout << "Email: ";
+            getline(cin, agenda[cantidad].email);
+            cantidad++;
+        } else if (opcion == 2) {
+            cout << "Buscar nombre: ";
+            getline(cin, nombre);
+            int idx = buscarContacto(agenda, cantidad, nombre);
+            if (idx != -1) {
+                mostrarContacto(agenda[idx]);
+            } else {
+                cout << "Contacto no encontrado.\n";
+            }
+        } else if (opcion == 3) {
+            for (int i = 0; i < cantidad; i++) {
+                cout << "\nContacto #" << i + 1 << ":\n";
+                mostrarContacto(agenda[i]);
+            }
+        }
+
+    } while (opcion != 0);
+
+    return 0;
+}

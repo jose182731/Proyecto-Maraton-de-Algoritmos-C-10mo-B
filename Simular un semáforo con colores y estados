@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int opcion;
+    cout << "Seleccione el color del semáforo:\n";
+    cout << "1. Rojo\n2. Amarillo\n3. Verde\n";
+    cin >> opcion;
+
+    switch (opcion) {
+        case 1:
+            cout << "DETENERSE" << endl;
+            break;
+        case 2:
+            cout << "PRECAUCIÓN" << endl;
+            break;
+        case 3:
+            cout << "AVANZAR" << endl;
+            break;
+        default:
+            cout << "Color inválido." << endl;
+    }
+
+    return 0;
+}

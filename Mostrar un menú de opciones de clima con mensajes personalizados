@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int opcion;
+
+    cout << "Seleccione el clima actual:\n";
+    cout << "1. Soleado\n2. Lluvioso\n3. Nublado\n4. Nevado\n";
+    cin >> opcion;
+
+    switch (opcion) {
+        case 1: cout << "Ponte protector solar." << endl; break;
+        case 2: cout << "Lleva un paraguas." << endl; break;
+        case 3: cout << "Perfecto para leer un libro." << endl; break;
+        case 4: cout << "Abrígate bien." << endl; break;
+        default: cout << "Opción no válida." << endl;
+    }
+
+    return 0;
+}

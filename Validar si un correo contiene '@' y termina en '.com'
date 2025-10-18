@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string correo;
+    cout << "Ingrese su correo electrónico: ";
+    cin >> correo;
+
+    bool tieneArroba = correo.find('@') != string::npos;
+    bool terminaCom = correo.size() >= 4 && correo.substr(correo.size() - 4) == ".com";
+
+    if (tieneArroba && terminaCom)
+        cout << "Correo válido." << endl;
+    else
+        cout << "Correo inválido." << endl;
+
+    return 0;
+}

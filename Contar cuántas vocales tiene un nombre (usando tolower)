@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string nombre;
+    int vocales = 0;
+    cout << "Ingrese su nombre: ";
+    cin >> nombre;
+
+    for (char c : nombre) {
+        c = tolower(c);
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            vocales++;
+        }
+    }
+
+    cout << "Tu nombre tiene " << vocales << " vocales." << endl;
+    return 0;
+}

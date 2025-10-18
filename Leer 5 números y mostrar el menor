@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero, menor;
+    cout << "Ingrese un número: ";
+    cin >> menor;
+
+    for (int i = 1; i < 5; i++) {
+        cout << "Ingrese otro número: ";
+        cin >> numero;
+        if (numero < menor)
+            menor = numero;
+    }
+
+    cout << "El número menor es: " << menor << endl;
+    return 0;
+}

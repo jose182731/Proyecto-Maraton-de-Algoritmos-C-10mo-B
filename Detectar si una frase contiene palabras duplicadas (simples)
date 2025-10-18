@@ -1,0 +1,26 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main() {
+    string frase, palabra;
+    vector<string> palabras;
+
+    cout << "Ingrese una frase: ";
+    getline(cin, frase);
+    istringstream stream(frase);
+
+    while (stream >> palabra) {
+        for (string p : palabras) {
+            if (p == palabra) {
+                cout << "Palabra repetida: " << palabra << endl;
+                return 0;
+            }
+        }
+        palabras.push_back(palabra);
+    }
+
+    cout << "No hay palabras repetidas." << endl;
+    return 0;
+}

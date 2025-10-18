@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Gasto {
+    string descripcion;
+    double monto;
+};
+
+void mostrarGastos(Gasto* gastos, int n) {
+    double total = 0;
+    cout << "\nResumen de gastos:\n";
+    for (int i = 0; i < n; i++) {
+        cout << gastos[i].descripcion << ": $" << gastos[i].monto << endl;
+        total += gastos[i].monto;
+    }
+    cout << "Total gastado: $" << total << endl;
+}
+
+int main() {
+    int n;
+    cout << "¿Cuántos gastos desea registrar hoy?: ";
+    cin >> n;
+    cin.ignore(); // limpiar buffer
+
+    Gasto* gastos = new Gasto[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nGasto #" << (i + 1) << endl;
+        cout << "Descripción: ";
+        getline(cin, gastos[i].descripcion);
+        cout << "Monto: $";
+        cin >> gastos[i].monto;
+        cin.ignore();
+    }
+
+    mostrarGastos(gastos, n);
+    delete[] gastos;
+    return 0;
+}

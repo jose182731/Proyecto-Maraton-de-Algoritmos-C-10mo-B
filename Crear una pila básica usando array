@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+const int MAX = 100;
+
+class Pila {
+private:
+    int datos[MAX];
+    int tope;
+
+public:
+    Pila() { tope = -1; }
+
+    void push(int valor) {
+        if (tope < MAX - 1)
+            datos[++tope] = valor;
+        else
+            cout << "Pila llena." << endl;
+    }
+
+    void pop() {
+        if (tope >= 0)
+            tope--;
+        else
+            cout << "Pila vacía." << endl;
+    }
+
+    int top() {
+        if (tope >= 0)
+            return datos[tope];
+        else {
+            cout << "Pila vacía." << endl;
+            return -1;
+        }
+    }
+
+    bool vacia() {
+        return tope == -1;
+    }
+};
+
+int main() {
+    Pila p;
+    p.push(10);
+    p.push(20);
+    cout << "Tope: " << p.top() << endl;
+    p.pop();
+    cout << "Tope tras pop: " << p.top() << endl;
+    return 0;
+}

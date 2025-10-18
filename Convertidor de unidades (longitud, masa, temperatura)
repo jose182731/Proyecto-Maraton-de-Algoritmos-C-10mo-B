@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+double convertirLongitud(double metros) {
+    return metros * 3.28084; // a pies
+}
+
+double convertirMasa(double kg) {
+    return kg * 2.20462; // a libras
+}
+
+double convertirTemperatura(double celsius) {
+    return (celsius * 9 / 5) + 32; // a Fahrenheit
+}
+
+int main() {
+    int opcion;
+    double valor;
+
+    cout << "Seleccione tipo de conversión:\n1. Longitud (metros a pies)\n2. Masa (kg a libras)\n3. Temperatura (C° a F°)\n";
+    cin >> opcion;
+    cout << "Ingrese valor a convertir: ";
+    cin >> valor;
+
+    switch (opcion) {
+        case 1:
+            cout << "Resultado: " << convertirLongitud(valor) << " pies\n";
+            break;
+        case 2:
+            cout << "Resultado: " << convertirMasa(valor) << " libras\n";
+            break;
+        case 3:
+            cout << "Resultado: " << convertirTemperatura(valor) << " °F\n";
+            break;
+        default:
+            cout << "Opción inválida.\n";
+    }
+
+    return 0;
+}

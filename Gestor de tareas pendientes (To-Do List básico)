@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int MAX = 50;
+
+struct Tarea {
+    string descripcion;
+    bool completada;
+};
+
+int main() {
+    Tarea tareas[MAX];
+    int cantidad = 0;
+    int opcion;
+
+    do {
+        cout << "\n--- MENU ---\n";
+        cout << "1. Agregar tarea\n2. Marcar como completada\n3. Ver tareas\n0. Salir\n";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1 && cantidad < MAX) {
+            cout << "Descripción: ";
+            getline(cin, tareas[cantidad].descripcion);
+            tareas[cantidad].completada = false;
+            cantidad++;
+        } else if (opcion == 2) {
+            int index;
+            cout << "Número de tarea (0 a " << cantidad - 1 << "): ";
+            cin >> index;
+            if (index >= 0 && index < cantidad) tareas[index].completada = true;
+        } else if (opcion == 3) {
+            cout << "\n--- TAREAS ---\n";
+            for (int i = 0; i < cantidad; i++) {
+                cout << i << ". [" << (tareas[i].completada ? "X" : " ") << "] "
+                     << tareas[i].descripcion << endl;
+            }
+        }
+    } while (opcion != 0);
+
+    return 0;
+}

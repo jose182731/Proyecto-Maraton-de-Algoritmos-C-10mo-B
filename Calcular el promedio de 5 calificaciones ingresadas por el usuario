@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    float calificacion, suma = 0;
+    for (int i = 1; i <= 5; i++) {
+        cout << "Ingrese calificación " << i << ": ";
+        cin >> calificacion;
+        suma += calificacion;
+    }
+
+    float promedio = suma / 5;
+    cout << "El promedio es: " << promedio << endl;
+    return 0;
+}

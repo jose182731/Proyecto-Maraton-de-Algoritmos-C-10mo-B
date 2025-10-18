@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num, negativos = 0;
+    cout << "Ingrese números (0 para terminar):" << endl;
+
+    do {
+        cin >> num;
+        if (num < 0)
+            negativos++;
+    } while (num != 0);
+
+    cout << "Se ingresaron " << negativos << " números negativos." << endl;
+    return 0;
+}

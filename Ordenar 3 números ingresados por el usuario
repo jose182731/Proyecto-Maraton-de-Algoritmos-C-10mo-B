@@ -1,0 +1,15 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int a, b, c;
+    cout << "Ingrese 3 números: ";
+    cin >> a >> b >> c;
+
+    int nums[3] = {a, b, c};
+    sort(nums, nums + 3);
+
+    cout << "Orden ascendente: " << nums[0] << ", " << nums[1] << ", " << nums[2] << endl;
+    return 0;
+}

@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra1, palabra2;
+    cout << "Ingrese dos palabras: ";
+    cin >> palabra1 >> palabra2;
+
+    if (palabra1 == palabra2) {
+        cout << "Ambas palabras son iguales." << endl;
+    } else if (palabra1 > palabra2) {
+        cout << palabra1 << " es mayor alfabéticamente." << endl;
+    } else {
+        cout << palabra2 << " es mayor alfabéticamente." << endl;
+    }
+
+    return 0;
+}

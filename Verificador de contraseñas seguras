@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool esSegura(string pass) {
+    if (pass.length() < 8) return false;
+
+    bool tieneMayus = false, tieneNumero = false;
+    for (char c : pass) {
+        if (isupper(c)) tieneMayus = true;
+        if (isdigit(c)) tieneNumero = true;
+    }
+
+    return tieneMayus && tieneNumero;
+}
+
+int main() {
+    string pass;
+    cout << "Ingrese su contraseña: ";
+    cin >> pass;
+
+    if (esSegura(pass))
+        cout << "Contraseña segura.\n";
+    else
+        cout << "Contraseña débil. Use al menos 8 caracteres, una mayúscula y un número.\n";
+
+    return 0;
+}

@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    if (num % 2 == 0 && num % 3 == 0 && num % 5 == 0)
+        cout << "Es divisible por 2, 3 y 5." << endl;
+    else
+        cout << "No es divisible por 2, 3 y 5." << endl;
+
+    return 0;
+}

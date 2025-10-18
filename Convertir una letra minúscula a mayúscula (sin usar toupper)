@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    char letra;
+    cout << "Ingrese una letra minúscula: ";
+    cin >> letra;
+
+    if (letra >= 'a' && letra <= 'z') {
+        letra = letra - 32; // Conversión ASCII
+        cout << "Versión mayúscula: " << letra << endl;
+    } else {
+        cout << "No es una letra minúscula válida." << endl;
+    }
+
+    return 0;
+}

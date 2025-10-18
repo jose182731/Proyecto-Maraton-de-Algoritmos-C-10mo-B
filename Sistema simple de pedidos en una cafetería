@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Producto {
+    string nombre;
+    double precio;
+};
+
+int main() {
+    Producto menu[3] = {
+        {"Café", 1.50},
+        {"Té", 1.20},
+        {"Pan", 0.80}
+    };
+
+    int opcion, cantidad;
+    double total = 0;
+
+    do {
+        cout << "\n--- MENÚ ---\n";
+        for (int i = 0; i < 3; i++)
+            cout << i + 1 << ". " << menu[i].nombre << " - $" << menu[i].precio << endl;
+        cout << "0. Finalizar pedido\nElija un producto: ";
+        cin >> opcion;
+
+        if (opcion >= 1 && opcion <= 3) {
+            cout << "Cantidad: ";
+            cin >> cantidad;
+            total += menu[opcion - 1].precio * cantidad;
+        }
+
+    } while (opcion != 0);
+
+    cout << "Total a pagar: $" << total << endl;
+    return 0;
+}

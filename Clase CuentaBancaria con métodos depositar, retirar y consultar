@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class CuentaBancaria {
+private:
+    double saldo;
+public:
+    CuentaBancaria() {
+        saldo = 0;
+    }
+
+    void depositar(double monto) {
+        saldo += monto;
+    }
+
+    void retirar(double monto) {
+        if (monto <= saldo)
+            saldo -= monto;
+        else
+            cout << "Fondos insuficientes." << endl;
+    }
+
+    double consultar() {
+        return saldo;
+    }
+};
+
+int main() {
+    CuentaBancaria cuenta;
+    cuenta.depositar(1500);
+    cuenta.retirar(500);
+    cout << "Saldo actual: " << cuenta.consultar() << endl;
+    return 0;
+}

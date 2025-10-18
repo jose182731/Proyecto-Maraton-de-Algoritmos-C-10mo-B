@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    char letra;
+    int contador = 0;
+
+    cout << "Ingrese 10 letras:\n";
+    for (int i = 0; i < 10; i++) {
+        cin >> letra;
+        letra = tolower(letra);
+        if (letra == 'a' || letra == 'e' || letra == 'i' || letra == 'o' || letra == 'u')
+            contador++;
+    }
+
+    cout << "Cantidad de vocales: " << contador << endl;
+    return 0;
+}

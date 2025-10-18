@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string frase;
+    char letra;
+    int contador = 0;
+
+    cout << "Ingrese una frase: ";
+    getline(cin, frase);
+    cout << "Ingrese una letra a buscar: ";
+    cin >> letra;
+
+    for (char c : frase) {
+        if (tolower(c) == tolower(letra)) {
+            contador++;
+        }
+    }
+
+    cout << "La letra '" << letra << "' aparece " << contador << " veces." << endl;
+    return 0;
+}

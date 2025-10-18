@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num, i, esPrimo = 1;
+    cout << "Ingrese un número: ";
+    cin >> num;
+
+    if (num <= 1) esPrimo = 0;
+    for (i = 2; i <= num / 2; i++) {
+        if (num % i == 0) {
+            esPrimo = 0;
+            break;
+        }
+    }
+
+    if (esPrimo)
+        cout << "Es primo." << endl;
+    else
+        cout << "No es primo." << endl;
+
+    return 0;
+}

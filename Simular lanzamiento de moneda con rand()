@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+    srand(time(0));
+    int resultado = rand() % 2;  // 0 o 1
+
+    cout << "Lanzando moneda..." << endl;
+    cout << (resultado == 0 ? "Cara" : "Cruz") << endl;
+
+    return 0;
+}

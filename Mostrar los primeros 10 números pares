@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Primeros 10 números pares: ";
+    for (int i = 1; i <= 10; i++)
+        cout << i * 2 << " ";
+    cout << endl;
+    return 0;
+}

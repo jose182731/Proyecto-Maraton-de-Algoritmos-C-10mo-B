@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra;
+    cout << "Ingrese una palabra: ";
+    cin >> palabra;
+
+    bool soloLetras = true;
+    for (char c : palabra) {
+        if (!isalpha(c)) {
+            soloLetras = false;
+            break;
+        }
+    }
+
+    cout << (soloLetras ? "Solo contiene letras." : "Contiene caracteres no válidos.") << endl;
+    return 0;
+}

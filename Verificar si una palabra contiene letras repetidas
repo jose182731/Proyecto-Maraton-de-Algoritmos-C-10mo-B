@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string palabra;
+    cout << "Ingrese una palabra: ";
+    cin >> palabra;
+
+    bool repetido = false;
+
+    for (int i = 0; i < palabra.length(); i++) {
+        for (int j = i + 1; j < palabra.length(); j++) {
+            if (palabra[i] == palabra[j]) {
+                repetido = true;
+                break;
+            }
+        }
+        if (repetido) break;
+    }
+
+    if (repetido)
+        cout << "La palabra tiene letras repetidas." << endl;
+    else
+        cout << "No hay letras repetidas." << endl;
+
+    return 0;
+}

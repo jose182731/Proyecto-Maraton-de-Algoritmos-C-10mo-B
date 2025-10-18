@@ -1,0 +1,15 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int arr[5];
+    cout << "Ingrese 5 números: ";
+    for (int i = 0; i < 5; i++)
+        cin >> arr[i];
+
+    sort(arr, arr + 5);
+    cout << "El segundo mayor es: " << arr[3] << endl;
+
+    return 0;
+}

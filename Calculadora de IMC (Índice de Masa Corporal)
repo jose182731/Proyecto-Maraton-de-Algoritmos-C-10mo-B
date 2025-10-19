@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+double calcularIMC(double peso, double altura) {
+    return peso / (altura * altura);
+}
+
+string clasificarIMC(double imc) {
+    if (imc < 18.5) return "Bajo peso";
+    else if (imc < 25) return "Normal";
+    else if (imc < 30) return "Sobrepeso";
+    else return "Obesidad";
+}
+
+int main() {
+    double peso, altura;
+    cout << "Ingrese su peso (kg): ";
+    cin >> peso;
+    cout << "Ingrese su altura (m): ";
+    cin >> altura;
+
+    double imc = calcularIMC(peso, altura);
+    cout << "Su IMC es: " << imc << " (" << clasificarIMC(imc) << ")\n";
+
+    return 0;
+}

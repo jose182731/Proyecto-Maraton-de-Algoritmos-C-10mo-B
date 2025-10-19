@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+const int FILAS = 5;
+const int COLUMNAS = 6;
+
+void mostrarSala(char sala[FILAS][COLUMNAS]) {
+    cout << "\nEstado de la sala (O = libre, X = reservado):\n";
+    for (int i = 0; i < FILAS; i++) {
+        for (int j = 0; j < COLUMNAS; j++) {
+            cout << sala[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    char sala[FILAS][COLUMNAS];
+
+    // Inicializar todos los asientos como disponibles
+    for (int i = 0; i < FILAS; i++)
+        for (int j = 0; j < COLUMNAS; j++)
+            sala[i][j] = 'O';
+
+    int fila, col;
+    char continuar;
+
+    do {
+        mostrarSala(sala);
+        cout << "\nSeleccione asiento (fila y columna): ";
+        cin >> fila >> col;
+
+        if (fila >= 0 && fila < FILAS && col >= 0 && col < COLUMNAS) {
+            if (sala[fila][col] == 'O') {
+                sala[fila][col] = 'X';
+                cout << "Reserva realizada.\n";
+            } else {
+                cout << "Asiento ya reservado.\n";
+            }
+        } else {
+            cout << "Posición inválida.\n";
+        }
+
+        cout << "¿Reservar otro? (s/n): ";
+        cin >> continuar;
+
+    } while (continuar == 's');
+
+    return 0;
+}

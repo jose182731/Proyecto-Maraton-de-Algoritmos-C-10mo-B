@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Producto {
+public:
+    string nombre;
+    int cantidad;
+    double precio;
+
+    void mostrar() {
+        cout << nombre << " - Stock: " << cantidad << " - Precio: $" << precio << endl;
+    }
+
+    void vender(int unidades) {
+        if (unidades <= cantidad) {
+            cantidad -= unidades;
+            cout << "Venta realizada. Total: $" << precio * unidades << endl;
+        } else {
+            cout << "Stock insuficiente.\n";
+        }
+    }
+};
+
+int main() {
+    Producto productos[3] = {
+        {"Pan", 20, 1.5},
+        {"Leche", 10, 2.3},
+        {"Huevos", 30, 0.2}
+    };
+
+    int opcion, cantidad;
+    do {
+        cout << "\n--- Productos disponibles ---\n";
+        for (int i = 0; i < 3; i++) {
+            cout << i + 1 << ". ";
+            productos[i].mostrar();
+        }
+        cout << "0. Salir\nSeleccione producto a vender: ";
+        cin >> opcion;
+
+        if (opcion >= 1 && opcion <= 3) {
+            cout << "Cantidad a vender: ";
+            cin >> cantidad;
+            productos[opcion - 1].vender(cantidad);
+        }
+
+    } while (opcion != 0);
+
+    return 0;
+}

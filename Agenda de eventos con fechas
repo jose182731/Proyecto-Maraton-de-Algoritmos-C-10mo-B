@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Evento {
+    string titulo;
+    int dia, mes;
+};
+
+void mostrarEventos(Evento eventos[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << eventos[i].dia << "/" << eventos[i].mes << " - " << eventos[i].titulo << endl;
+    }
+}
+
+void ordenarPorFecha(Evento eventos[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (eventos[i].mes > eventos[j].mes ||
+               (eventos[i].mes == eventos[j].mes && eventos[i].dia > eventos[j].dia)) {
+                swap(eventos[i], eventos[j]);
+            }
+        }
+    }
+}
+
+int main() {
+    Evento eventos[10];
+    int n;
+
+    cout << "¿Cuántos eventos desea ingresar?: ";
+    cin >> n;
+    cin.ignore();
+
+    for (int i = 0; i < n; i++) {
+        cout << "Evento #" << i + 1 << ":\n";
+        cout << "Título: ";
+        getline(cin, eventos[i].titulo);
+        cout << "Día: ";
+        cin >> eventos[i].dia;
+        cout << "Mes: ";
+        cin >> eventos[i].mes;
+        cin.ignore();
+    }
+
+    ordenarPorFecha(eventos, n);
+    cout << "\nEventos ordenados:\n";
+    mostrarEventos(eventos, n);
+
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+struct Dia {
+    int temperatura;
+    string clima;
+};
+
+string obtenerClimaAleatorio() {
+    int r = rand() % 3;
+    switch (r) {
+        case 0: return "Soleado";
+        case 1: return "Nublado";
+        case 2: return "Lluvioso";
+    }
+    return "";
+}
+
+int main() {
+    srand(time(0));
+    Dia semana[7];
+
+    for (int i = 0; i < 7; i++) {
+        semana[i].temperatura = rand() % 16 + 15;
+        semana[i].clima = obtenerClimaAleatorio();
+    }
+
+    cout << "\nPronóstico semanal:\n";
+    for

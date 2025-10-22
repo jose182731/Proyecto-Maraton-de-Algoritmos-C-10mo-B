@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+double* duplicar(double *orig, int n) {
+    double *nuevo = new double[n];
+    for (int i = 0; i < n; i++)
+        *(nuevo + i) = *(orig + i);
+    return nuevo;
+}
+
+int main() {
+    int n;
+    cout << "Cantidad de precios: ";
+    cin >> n;
+
+    double *precios = new double[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Precio " << i + 1 << ": ";
+        cin >> precios[i];
+    }
+
+    double *copia = duplicar(precios, n);
+    cout << "\nCopia de precios:\n";
+    for (int i = 0; i < n; i++)
+        cout << copia[i] << " ";
+
+    delete[] precios;
+    delete[] copia;
+    return 0;
+}

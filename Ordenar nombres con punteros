@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void ordenar(string *arr, int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1; j < n; j++)
+            if (*(arr + i) > *(arr + j))
+                swap(*(arr + i), *(arr + j));
+}
+
+int main() {
+    int n;
+    cout << "Número de nombres: ";
+    cin >> n;
+    string *nombres = new string[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Nombre " << i + 1 << ": ";
+        cin >> nombres[i];
+    }
+
+    ordenar(nombres, n);
+    cout << "\nNombres ordenados:\n";
+    for (int i = 0; i < n; i++)
+        cout << nombres[i] << endl;
+
+    delete[] nombres;
+    return 0;
+}

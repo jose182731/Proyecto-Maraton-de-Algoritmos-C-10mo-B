@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+void intercambiar(double *a, double *b) {
+    double temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    double precio1 = 45.5, precio2 = 89.9;
+    cout << "Antes del intercambio: " << precio1 << ", " << precio2 << endl;
+    intercambiar(&precio1, &precio2);
+    cout << "Después del intercambio: " << precio1 << ", " << precio2 << endl;
+    return 0;
+}

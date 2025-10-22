@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Persona {
+private:
+    string nombre;
+    int edad;
+public:
+    Persona(string n, int e) : nombre(n), edad(e) {}
+    void saludar() {
+        cout << "Hola, soy " << nombre << " y tengo " << edad << " años." << endl;
+    }
+};
+
+int main() {
+    Persona p1("Carlos", 25);
+    Persona p2("Lucía", 30);
+    p1.saludar();
+    p2.saludar();
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Cliente {
+    string nombre;
+    string direccion;
+};
+
+void intercambiar(Cliente *a, Cliente *b) {
+    Cliente temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    Cliente c1 = {"Ana", "Av. Quito 123"};
+    Cliente c2 = {"Luis", "Calle 10 de Agosto 45"};
+
+    cout << "Antes:\n" << c1.nombre << ": " << c1.direccion << endl;
+    cout << c2.nombre << ": " << c2.direccion << endl;
+
+    intercambiar(&c1, &c2);
+
+    cout << "\nDespués:\n" << c1.nombre << ": " << c1.direccion << endl;
+    cout << c2.nombre << ": " << c2.direccion << endl;
+    return 0;
+}

@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int *ptr = nullptr;
+    int tam;
+    cout << "Tamaño de bloque de memoria: ";
+    cin >> tam;
+
+    ptr = new int[tam];
+    cout << "Memoria reservada para " << tam << " enteros.\n";
+
+    for (int i = 0; i < tam; i++)
+        ptr[i] = i * 10;
+
+    cout << "Contenido del bloque:\n";
+    for (int i = 0; i < tam; i++)
+        cout << ptr[i] << " ";
+
+    delete[] ptr;
+    cout << "\nMemoria liberada.\n";
+    return 0;
+}

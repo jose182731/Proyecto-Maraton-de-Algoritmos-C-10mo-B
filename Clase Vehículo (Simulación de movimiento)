@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Vehiculo {
+private:
+    string marca;
+    double velocidad;
+public:
+    Vehiculo(string m) : marca(m), velocidad(0) {}
+    void acelerar(double v) { velocidad += v; }
+    void frenar(double v) { velocidad = (velocidad - v < 0) ? 0 : velocidad - v; }
+    void mostrarEstado() {
+        cout << "Vehículo: " << marca << " | Velocidad actual: " << velocidad << " km/h\n";
+    }
+};
+
+int main() {
+    Vehiculo auto1("Toyota");
+    auto1.acelerar(50);
+    auto1.mostrarEstado();
+    auto1.frenar(20);
+    auto1.mostrarEstado();
+    auto1.frenar(40);
+    auto1.mostrarEstado();
+    return 0;
+}

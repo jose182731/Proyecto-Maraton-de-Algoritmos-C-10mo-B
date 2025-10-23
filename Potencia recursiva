@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+double potencia(double base, int exponente) {
+    if (exponente == 0) return 1;
+    if (exponente > 0) return base * potencia(base, exponente - 1);
+    return 1 / potencia(base, -exponente);
+}
+
+int main() {
+    double b;
+    int e;
+    cout << "Base: "; cin >> b;
+    cout << "Exponente: "; cin >> e;
+    cout << b << "^" << e << " = " << potencia(b, e) << endl;
+    return 0;
+}

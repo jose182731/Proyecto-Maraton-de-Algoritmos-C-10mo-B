@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Plato {
+private:
+    string nombre;
+    double precio;
+public:
+    Plato(string n, double p) : nombre(n), precio(p) {}
+    void mostrar() { cout << nombre << " - $" << precio << endl; }
+};
+
+class Restaurante {
+private:
+    string nombre;
+    Plato *menu;
+    int numPlatos;
+public:
+    Restaurante(string n, int cantidad) : nombre(n), numPlatos(cantidad) {
+        menu = new Plato[numPlatos]{
+            {"Hamburguesa", 4.5},
+            {"Pizza", 6.0},
+            {"Ensalada", 3.5}
+        };
+    }
+    void mostrarMenu() {
+        cout << "Menú del restaurante " << nombre << ":\n";
+        for (int i = 0; i < numPlatos; i++)
+            menu[i].mostrar();
+    }
+    ~Restaurante() { delete[] menu; }
+};
+
+int main() {
+    Restaurante r("Sabores del Mundo", 3);
+    r.mostrarMenu();
+    return 0;
+}

@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Producto {
+private:
+    string nombre;
+    double precio;
+    int cantidad;
+public:
+    Producto(string n, double p, int c) : nombre(n), precio(p), cantidad(c) {}
+    double valorTotal() { return precio * cantidad; }
+    void mostrar() {
+        cout << nombre << " - $" << precio << " x " << cantidad 
+             << " = $" << valorTotal() << endl;
+    }
+};
+
+int main() {
+    Producto p1("Pan", 0.5, 20);
+    Producto p2("Leche", 1.2, 10);
+    Producto p3("Huevos", 0.1, 30);
+
+    p1.mostrar();
+    p2.mostrar();
+    p3.mostrar();
+    return 0;
+}

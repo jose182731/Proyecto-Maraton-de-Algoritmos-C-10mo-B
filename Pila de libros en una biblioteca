@@ -1,0 +1,26 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> libros;
+    int n;
+    cout << "¿Cuántos libros apilará? ";
+    cin >> n;
+    cin.ignore();
+
+    for (int i = 0; i < n; i++) {
+        string titulo;
+        cout << "Título del libro " << i + 1 << ": ";
+        getline(cin, titulo);
+        libros.push(titulo);
+    }
+
+    cout << "\nDesapilando libros:\n";
+    while (!libros.empty()) {
+        cout << "Sacando: " << libros.top() << endl;
+        libros.pop();
+    }
+    return 0;
+}

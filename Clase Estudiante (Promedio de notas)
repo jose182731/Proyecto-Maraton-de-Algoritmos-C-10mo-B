@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Estudiante {
+private:
+    string nombre;
+    double nota1, nota2, nota3;
+public:
+    Estudiante(string n, double n1, double n2, double n3)
+        : nombre(n), nota1(n1), nota2(n2), nota3(n3) {}
+    double promedio() { return (nota1 + nota2 + nota3) / 3.0; }
+    void mostrarInfo() {
+        cout << nombre << " - Promedio: " << promedio() << endl;
+    }
+};
+
+int main() {
+    Estudiante e1("José", 8.5, 9.0, 7.5);
+    Estudiante e2("Ana", 9.2, 9.1, 8.8);
+    e1.mostrarInfo();
+    e2.mostrarInfo();
+    return 0;
+}

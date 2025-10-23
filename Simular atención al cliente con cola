@@ -1,0 +1,38 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+int main() {
+    queue<string> clientes;
+    int opcion;
+    string nombre;
+
+    do {
+        cout << "\n1. Nuevo cliente\n2. Atender cliente\n3. Ver cola\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Nombre del cliente: ";
+            getline(cin, nombre);
+            clientes.push(nombre);
+        } else if (opcion == 2) {
+            if (!clientes.empty()) {
+                cout << "Atendiendo a " << clientes.front() << endl;
+                clientes.pop();
+            } else {
+                cout << "No hay clientes en espera.\n";
+            }
+        } else if (opcion == 3) {
+            queue<string> temp = clientes;
+            cout << "Clientes en espera:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.front() << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

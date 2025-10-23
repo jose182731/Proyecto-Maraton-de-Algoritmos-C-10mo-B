@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string invertir(string s) {
+    if (s.empty()) return "";
+    return invertir(s.substr(1)) + s[0];
+}
+
+int main() {
+    string palabra;
+    cout << "Palabra: ";
+    cin >> palabra;
+    cout << "Invertida: " << invertir(palabra) << endl;
+    return 0;
+}

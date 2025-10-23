@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Carpeta {
+    string nombre;
+    vector<string> archivos;
+    vector<Carpeta> subcarpetas;
+};
+
+bool buscarArchivo(const Carpeta &carpeta, const string &archivo) {
+    for (auto &a : carpeta.archivos)
+        if (a == archivo) return true;
+    for (auto &sub : carpeta.subcarpetas)
+        if (buscarArchivo(sub, archivo)) return true;
+    return false;
+}
+
+int main() {
+    Carpeta raiz = {
+        "Documentos",
+        {"cv.pdf", "reporte.docx"},
+        {
+            {"Fotos", {"vacaciones.jpg"}, {}},
+            {"Proyectos", {"codigo.cpp"}, {}}
+        }
+    };
+
+    string buscado;
+    cout << "Ingrese el nombre del archivo a buscar: ";
+    cin >> buscado;
+
+    if (buscarArchivo(raiz, buscado))
+        cout << "Archivo encontrado.\n";
+    else
+        cout << "Archivo no encontrado.\n";
+
+    return 0;
+}

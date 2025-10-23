@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int formasSubir(int escalones) {
+    if (escalones <= 1) return 1;
+    return formasSubir(escalones - 1) + formasSubir(escalones - 2);
+}
+
+int main() {
+    int n;
+    cout << "Número de escalones: ";
+    cin >> n;
+    cout << "Formas posibles de subir: " << formasSubir(n) << endl;
+    return 0;
+}

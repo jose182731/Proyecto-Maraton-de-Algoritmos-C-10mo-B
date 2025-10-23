@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+// Función recursiva para calcular el total de la compra con IVA
+double totalConIVA(double precios[], int n, double iva = 0.12) {
+    if (n == 0) return 0;
+    return precios[n - 1] * (1 + iva) + totalConIVA(precios, n - 1, iva);
+}
+
+int main() {
+    int n;
+    cout << "Número de productos comprados: ";
+    cin >> n;
+
+    double *precios = new double[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Precio del producto " << i + 1 << ": ";
+        cin >> precios[i];
+    }
+
+    double total = totalConIVA(precios, n);
+    cout << "\nTotal a pagar (IVA incluido): $" << total << endl;
+
+    delete[] precios;
+    return 0;
+}

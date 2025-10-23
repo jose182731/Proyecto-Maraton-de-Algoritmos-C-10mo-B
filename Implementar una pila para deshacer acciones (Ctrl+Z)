@@ -1,0 +1,38 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> acciones;
+    string accion;
+    int opcion;
+
+    do {
+        cout << "\n1. Agregar acción\n2. Deshacer última acción\n3. Mostrar historial\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Ingrese descripción de la acción: ";
+            getline(cin, accion);
+            acciones.push(accion);
+        } else if (opcion == 2) {
+            if (!acciones.empty()) {
+                cout << "Deshaciendo: " << acciones.top() << endl;
+                acciones.pop();
+            } else {
+                cout << "No hay acciones para deshacer.\n";
+            }
+        } else if (opcion == 3) {
+            stack<string> temp = acciones;
+            cout << "\nHistorial de acciones:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.top() << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

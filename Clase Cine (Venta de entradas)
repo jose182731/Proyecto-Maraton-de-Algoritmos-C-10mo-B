@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Cine {
+private:
+    string nombre;
+    int asientosTotales;
+    int asientosVendidos;
+public:
+    Cine(string n, int total) : nombre(n), asientosTotales(total), asientosVendidos(0) {}
+    void venderEntrada(int cantidad) {
+        if (asientosVendidos + cantidad <= asientosTotales)
+            asientosVendidos += cantidad;
+        else
+            cout << "No hay suficientes asientos disponibles.\n";
+    }
+    void mostrarEstado() {
+        cout << "Cine: " << nombre << " | Asientos vendidos: " << asientosVendidos 
+             << "/" << asientosTotales << endl;
+    }
+};
+
+int main() {
+    Cine cine("Cinemark Quito", 100);
+    cine.venderEntrada(20);
+    cine.mostrarEstado();
+    cine.venderEntrada(85);
+    cine.mostrarEstado();
+    return 0;
+}

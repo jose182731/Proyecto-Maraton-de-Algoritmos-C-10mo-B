@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Habitacion {
+    int numero;
+    bool ocupada;
+public:
+    Habitacion(int n) : numero(n), ocupada(false) {}
+    bool estaOcupada() { return ocupada; }
+    void reservar() { ocupada = true; }
+    void liberar() { ocupada = false; }
+    void mostrar() { cout << "Habitación " << numero << " | " << (ocupada?"Ocupada":"Libre") << endl; }
+};
+
+int main() {
+    vector<Habitacion> hotel;
+    for (int i = 1; i <= 5; i++) hotel.push_back(Habitacion(i));
+
+    hotel[0].reservar();
+    hotel[2].reservar();
+
+    for (auto &h : hotel) h.mostrar();
+
+    hotel[0].liberar();
+    hotel[0].mostrar();
+
+    return 0;
+}

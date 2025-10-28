@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Estudiante {
+    string nombre;
+    vector<float> notas;
+public:
+    Estudiante(string n) : nombre(n) {}
+    void agregarNota(float nota) { notas.push_back(nota); }
+    float promedio() {
+        float suma = 0;
+        for (float n : notas) suma += n;
+        return notas.empty() ? 0 : suma / notas.size();
+    }
+    void mostrar() {
+        cout << "Estudiante: " << nombre << " | Promedio: " << promedio() << endl;
+    }
+};
+
+int main() {
+    vector<Estudiante> lista = {Estudiante("Ana"), Estudiante("Pedro")};
+    lista[0].agregarNota(8.5);
+    lista[0].agregarNota(9.2);
+    lista[1].agregarNota(7.0);
+    for (auto &e : lista) e.mostrar();
+    return 0;
+}

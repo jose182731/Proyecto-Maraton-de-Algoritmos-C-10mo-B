@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Producto {
+    string nombre;
+    int cantidad;
+public:
+    Producto(string n, int c) : nombre(n), cantidad(c) {}
+    void vender(int c) {
+        if (c <= cantidad) cantidad -= c;
+        else cout << "Stock insuficiente\n";
+    }
+    void mostrar() { cout << nombre << " | Cantidad: " << cantidad << endl; }
+};
+
+int main() {
+    vector<Producto> inventario = {Producto("Laptop", 5), Producto("Mouse", 10)};
+    inventario[0].vender(3);
+    inventario[1].vender(12);
+    for (auto &p : inventario) p.mostrar();
+    return 0;
+}

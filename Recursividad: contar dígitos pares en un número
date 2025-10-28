@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int contarPares(int n) {
+    if (n == 0) return 0;
+    int d = n % 10;
+    return (d % 2 == 0 ? 1 : 0) + contarPares(n / 10);
+}
+
+int main() {
+    int n;
+    cout << "Ingrese un número: ";
+    cin >> n;
+    cout << "Cantidad de dígitos pares: " << contarPares(n) << endl;
+    return 0;
+}

@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Alumno {
+    string* nombre;
+    int* edad;
+public:
+    Alumno(string n, int e) {
+        nombre = new string(n);
+        edad = new int(e);
+    }
+    ~Alumno() {
+        delete nombre;
+        delete edad;
+    }
+    void mostrar() {
+        cout << "Alumno: " << *nombre << " | Edad: " << *edad << endl;
+    }
+};
+
+int main() {
+    Alumno a("Lucía", 20);
+    a.mostrar();
+    return 0;
+}

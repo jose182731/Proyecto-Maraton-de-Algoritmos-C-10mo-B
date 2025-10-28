@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Nodo {
+    string tarea;
+    Nodo *siguiente;
+};
+
+void agregarTarea(Nodo *&lista, string tarea) {
+    Nodo *nuevo = new Nodo{tarea, nullptr};
+    if (!lista) lista = nuevo;
+    else {
+        Nodo *temp = lista;
+        while (temp->siguiente) temp = temp->siguiente;
+        temp->siguiente = nuevo;
+    }
+}
+
+void mostrarTareas(Nodo *lista) {
+    cout << "\nLista de tareas:\n";
+    while (lista) {
+        cout << "- " << lista->tarea << endl;
+        lista = lista->siguiente;
+    }
+}
+
+int main() {
+    Nodo *lista = nullptr;
+    agregarTarea(lista, "Lavar los platos");
+    agregarTarea(lista, "Hacer la compra");
+    agregarTarea(lista, "Estudiar C++");
+    mostrarTareas(lista);
+    return 0;
+}

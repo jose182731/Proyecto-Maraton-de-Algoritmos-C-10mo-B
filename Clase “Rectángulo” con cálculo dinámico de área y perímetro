@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+class Rectangulo {
+    double *largo, *ancho;
+public:
+    Rectangulo(double l, double a) {
+        largo = new double(l);
+        ancho = new double(a);
+    }
+    ~Rectangulo() { delete largo; delete ancho; }
+    double area() { return (*largo) * (*ancho); }
+    double perimetro() { return 2 * ((*largo) + (*ancho)); }
+};
+
+int main() {
+    Rectangulo r(5.5, 3.2);
+    cout << "Área: " << r.area() << " | Perímetro: " << r.perimetro() << endl;
+    return 0;
+}

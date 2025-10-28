@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Nodo {
+    string pagina;
+    Nodo *ant, *sig;
+};
+
+void visitar(Nodo *&actual, string url) {
+    Nodo *nuevo = new Nodo{url, actual, nullptr};
+    if (actual) actual->sig = nuevo;
+    actual = nuevo;
+    cout << "Visitando: " << url << endl;
+}
+
+void retroceder(Nodo *&actual) {
+    if (actual && actual->ant) {
+        actual = actual->ant;
+        cout << "Retrocediendo a: " << actual->pagina << endl;
+    } else cout << "No hay página anterior.\n";
+}
+
+void avanzar(Nodo *&actual) {
+    if (actual && actual->sig) {
+        actual = actual->sig;
+        cout << "Avanzando a: " << actual->pagina << endl;
+    } else cout << "No hay página siguiente.\n";
+}
+
+int main() {
+    Nodo *historial = nullptr;
+    int opcion;
+    string url;
+
+    do {
+        cout << "\n1. Visitar página\n2. Retroceder\n3. Avanzar\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Ingrese URL: ";
+            getline(cin, url);
+            visitar(historial, url);
+        } else if (opcion == 2) retroceder(historial);
+        else if (opcion == 3) avanzar(historial);
+    } while (opcion != 4);
+    return 0;
+}

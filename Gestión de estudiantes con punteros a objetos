@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Estudiante {
+    string nombre;
+    int edad;
+public:
+    Estudiante(string n, int e) : nombre(n), edad(e) {}
+    void mostrar() { cout << nombre << " | Edad: " << edad << endl; }
+};
+
+int main() {
+    vector<Estudiante*> estudiantes;
+    estudiantes.push_back(new Estudiante("Ana", 20));
+    estudiantes.push_back(new Estudiante("Luis", 22));
+
+    for (auto e : estudiantes) e->mostrar();
+
+    for (auto e : estudiantes) delete e;
+    return 0;
+}

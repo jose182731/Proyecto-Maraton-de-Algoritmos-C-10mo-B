@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int valor;
+    Nodo* sig;
+};
+
+void agregar(Nodo*& lista, int v) {
+    lista = new Nodo{v, lista};
+}
+
+void eliminar(Nodo*& lista, int v) {
+    Nodo* act = lista;
+    Nodo* ant = nullptr;
+    while (act && act->valor != v) {
+        ant = act;
+        act = act->sig;
+    }
+    if (!act) return;
+    if (!ant) lista = act->sig;
+    else ant->sig = act->sig;
+    delete act;
+}
+
+void mostrar(Nodo* lista) {
+    while (lista) {
+        cout << lista->valor << " ";
+        lista = lista->sig;
+    }
+    cout << endl;
+}
+
+int main() {
+    Nodo* lista = nullptr;
+    agregar(lista, 10);
+    agregar(lista, 20);
+    agregar(lista, 30);
+    mostrar(lista);
+    eliminar(lista, 20);
+    mostrar(lista);
+    return 0;
+}

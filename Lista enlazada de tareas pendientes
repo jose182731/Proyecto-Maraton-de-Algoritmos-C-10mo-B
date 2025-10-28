@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Tarea {
+    string descripcion;
+    Tarea* siguiente;
+};
+
+void agregar(Tarea*& lista, string desc) {
+    Tarea* nueva = new Tarea{desc, lista};
+    lista = nueva;
+}
+
+void mostrar(Tarea* lista) {
+    cout << "\nTareas pendientes:\n";
+    while (lista) {
+        cout << "- " << lista->descripcion << endl;
+        lista = lista->siguiente;
+    }
+}
+
+void liberar(Tarea*& lista) {
+    while (lista) {
+        Tarea* temp = lista;
+        lista = lista->siguiente;
+        delete temp;
+    }
+}
+
+int main() {
+    Tarea* lista = nullptr;
+    agregar(lista, "Hacer compras");
+    agregar(lista, "Estudiar C++");
+    agregar(lista, "Lavar el auto");
+    mostrar(lista);
+    liberar(lista);
+    return 0;
+}

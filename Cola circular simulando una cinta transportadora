@@ -1,0 +1,29 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<int> cinta;
+    int n, pasos;
+    cout << "Número de elementos en la cinta: ";
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) cinta.push(i);
+
+    cout << "Pasos de rotación: ";
+    cin >> pasos;
+
+    for (int i = 0; i < pasos; i++) {
+        int temp = cinta.front();
+        cinta.pop();
+        cinta.push(temp);
+    }
+
+    cout << "Orden final de la cinta: ";
+    while (!cinta.empty()) {
+        cout << cinta.front() << " ";
+        cinta.pop();
+    }
+    cout << endl;
+    return 0;
+}

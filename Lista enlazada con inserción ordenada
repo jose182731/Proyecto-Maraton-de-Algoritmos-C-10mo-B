@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int valor;
+    Nodo* sig;
+};
+
+void insertarOrdenado(Nodo*& lista, int v) {
+    Nodo* nuevo = new Nodo{v, nullptr};
+    if (!lista || v < lista->valor) {
+        nuevo->sig = lista;
+        lista = nuevo;
+    } else {
+        Nodo* aux = lista;
+        while (aux->sig && aux->sig->valor < v)
+            aux = aux->sig;
+        nuevo->sig = aux->sig;
+        aux->sig = nuevo;
+    }
+}
+
+void mostrar(Nodo* lista) {
+    cout << "Lista: ";
+    while (lista) {
+        cout << lista->valor << " ";
+        lista = lista->sig;
+    }
+    cout << endl;
+}
+
+int main() {
+    Nodo* lista = nullptr;
+    insertarOrdenado(lista, 7);
+    insertarOrdenado(lista, 3);
+    insertarOrdenado(lista, 10);
+    mostrar(lista);
+    return 0;
+}

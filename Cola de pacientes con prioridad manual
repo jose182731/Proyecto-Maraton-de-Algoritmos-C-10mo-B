@@ -1,0 +1,37 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+struct Paciente {
+    string nombre;
+    int prioridad; // 1 = urgente, 2 = normal
+};
+
+int main() {
+    queue<Paciente> normales;
+    queue<Paciente> urgentes;
+
+    int opcion;
+    do {
+        cout << "\n1. Agregar paciente\n2. Atender paciente\n3. Salir\nOpción: ";
+        cin >> opcion;
+        if (opcion == 1) {
+            Paciente p;
+            cout << "Nombre: "; cin >> p.nombre;
+            cout << "Prioridad (1 urgente / 2 normal): "; cin >> p.prioridad;
+            if (p.prioridad == 1) urgentes.push(p);
+            else normales.push(p);
+        } else if (opcion == 2) {
+            if (!urgentes.empty()) {
+                cout << "Atendiendo (URGENTE): " << urgentes.front().nombre << endl;
+                urgentes.pop();
+            } else if (!normales.empty()) {
+                cout << "Atendiendo: " << normales.front().nombre << endl;
+                normales.pop();
+            } else cout << "No hay pacientes.\n";
+        }
+    } while (opcion != 3);
+
+    return 0;
+}

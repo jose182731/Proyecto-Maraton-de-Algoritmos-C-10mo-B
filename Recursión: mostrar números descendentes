@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+void descendente(int n) {
+    if (n < 0) return;
+    cout << n << " ";
+    descendente(n - 1);
+}
+
+int main() {
+    int n;
+    cout << "Ingrese un número: ";
+    cin >> n;
+    descendente(n);
+    return 0;
+}

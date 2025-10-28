@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int valor;
+    Nodo *sig;
+};
+
+void push(Nodo *&pila, int v) {
+    Nodo *nuevo = new Nodo{v, pila};
+    pila = nuevo;
+}
+
+int pop(Nodo *&pila) {
+    if (!pila) return -1;
+    int val = pila->valor;
+    Nodo *temp = pila;
+    pila = pila->sig;
+    delete temp;
+    return val;
+}
+
+void mostrar(Nodo *pila) {
+    cout << "Contenido de la pila:\n";
+    while (pila) {
+        cout << pila->valor << " ";
+        pila = pila->sig;
+    }
+    cout << endl;
+}
+
+int main() {
+    Nodo *pila = nullptr;
+    push(pila, 10);
+    push(pila, 20);
+    push(pila, 30);
+    mostrar(pila);
+    cout << "Elemento desapilado: " << pop(pila) << endl;
+    mostrar(pila);
+    return 0;
+}

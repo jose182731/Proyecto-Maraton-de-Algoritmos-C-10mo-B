@@ -1,0 +1,28 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+int main() {
+    queue<string> linea;
+    linea.push("Producto A");
+    linea.push("Producto B");
+    linea.push("Producto C");
+
+    int ciclos;
+    cout << "Ingrese número de rotaciones: ";
+    cin >> ciclos;
+
+    for (int i = 0; i < ciclos; i++) {
+        string temp = linea.front();
+        linea.pop();
+        linea.push(temp);
+    }
+
+    cout << "\nOrden actual de producción:\n";
+    while (!linea.empty()) {
+        cout << linea.front() << endl;
+        linea.pop();
+    }
+    return 0;
+}

@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Producto {
+    string nombre;
+    double precio;
+    Producto *sig;
+};
+
+void agregar(Producto *&lista, string n, double p) {
+    Producto *nuevo = new Producto{n, p, lista};
+    lista = nuevo;
+}
+
+Producto* buscar(Producto *lista, string n) {
+    while (lista) {
+        if (lista->nombre == n) return lista;
+        lista = lista->sig;
+    }
+    return nullptr;
+}
+
+int main() {
+    Producto *lista = nullptr;
+    agregar(lista, "Café", 1.5);
+    agregar(lista, "Té", 1.2);
+    agregar(lista, "Pan", 0.9);
+
+    string buscado;
+    cout << "Ingrese producto a buscar: ";
+    cin >> buscado;
+
+    Producto *res = buscar(lista, buscado);
+    if (res) cout << res->nombre << " cuesta $" << res->precio << endl;
+    else cout << "Producto no encontrado.\n";
+    return 0;
+}

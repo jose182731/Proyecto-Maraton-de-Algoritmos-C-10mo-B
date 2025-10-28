@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class CuentaBancaria {
+    string titular;
+    double saldo;
+public:
+    CuentaBancaria(string t, double s) : titular(t), saldo(s) {}
+    void depositar(double m) { saldo += m; }
+    bool transferir(CuentaBancaria &destino, double m) {
+        if (m > saldo) return false;
+        saldo -= m; destino.depositar(m);
+        return true;
+    }
+    void mostrar() { cout << titular << " | Saldo: $" << saldo << endl; }
+};
+
+int main() {
+    CuentaBancaria c1("Ana", 500), c2("Luis", 300);
+    c1.transferir(c2, 150);
+    c1.mostrar();
+    c2.mostrar();
+    return 0;
+}

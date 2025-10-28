@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Ticket {
+    string cliente;
+    Ticket* sig;
+};
+
+void agregar(Ticket*& inicio, Ticket*& fin, string cliente) {
+    Ticket* nuevo = new Ticket{cliente, nullptr};
+    if (!inicio) inicio = nuevo;
+    else fin->sig = nuevo;
+    fin = nuevo;
+}
+
+void atender(Ticket*& inicio) {
+    if (!inicio) {
+        cout << "No hay tickets\n";
+        return;
+    }
+    cout << "Atendiendo a: " << inicio->cliente << endl;
+    Ticket* temp = inicio;
+    inicio = inicio->sig;
+    delete temp;
+}
+
+int main() {
+    Ticket *inicio = nullptr, *fin = nullptr;
+    agregar(inicio, fin, "Ana");
+    agregar(inicio, fin, "Luis");
+    atender(inicio);
+    atender(inicio);
+    atender(inicio);
+    return 0;
+}

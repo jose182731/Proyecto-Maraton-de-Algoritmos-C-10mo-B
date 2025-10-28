@@ -1,0 +1,27 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main() {
+    stack<double> pila;
+    double a, b;
+    char op;
+
+    cout << "Ingrese operación (ej: 5 3 +): ";
+    cin >> a >> b >> op;
+    pila.push(a);
+    pila.push(b);
+
+    double y = pila.top(); pila.pop();
+    double x = pila.top(); pila.pop();
+
+    switch (op) {
+        case '+': pila.push(x + y); break;
+        case '-': pila.push(x - y); break;
+        case '*': pila.push(x * y); break;
+        case '/': pila.push(x / y); break;
+    }
+
+    cout << "Resultado: " << pila.top() << endl;
+    return 0;
+}

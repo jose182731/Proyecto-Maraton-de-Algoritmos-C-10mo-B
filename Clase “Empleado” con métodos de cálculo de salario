@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Empleado {
+    string nombre;
+    double salarioBase, horasExtra;
+public:
+    Empleado(string n, double s, double h) : nombre(n), salarioBase(s), horasExtra(h) {}
+    double salarioTotal() { return salarioBase + horasExtra * 10; }
+    void mostrar() { cout << nombre << " gana $" << salarioTotal() << endl; }
+};
+
+int main() {
+    Empleado e1("Carlos", 500, 5);
+    Empleado e2("María", 600, 2);
+    e1.mostrar();
+    e2.mostrar();
+    return 0;
+}

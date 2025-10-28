@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Pedido {
+    string cliente;
+    string plato;
+    Pedido* sig;
+};
+
+void agregarPedido(Pedido*& inicio, Pedido*& fin, string c, string p) {
+    Pedido* nuevo = new Pedido{c, p, nullptr};
+    if (!inicio) inicio = nuevo;
+    else fin->sig = nuevo;
+    fin = nuevo;
+}
+
+void atenderPedido(Pedido*& inicio) {
+    if (!inicio) {
+        cout << "No hay pedidos.\n";
+        return;
+    }
+    cout << "Atendiendo a " << inicio->cliente << " (" << inicio->plato << ")\n";
+    Pedido* temp = inicio;
+    inicio = inicio->sig;
+    delete temp;
+}
+
+int main() {
+    Pedido *inicio = nullptr, *fin = nullptr;
+    agregarPedido(inicio, fin, "Ana", "Hamburguesa");
+    agregarPedido(inicio, fin, "Luis", "Pizza");
+    atenderPedido(inicio);
+    atenderPedido(inicio);
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Cita {
+    string paciente;
+    string fecha;
+    Cita* sig;
+};
+
+void agregarCita(Cita*& lista, string paciente, string fecha) {
+    Cita* nuevo = new Cita{paciente, fecha, nullptr};
+    if (!lista) lista = nuevo;
+    else {
+        Cita* aux = lista;
+        while (aux->sig) aux = aux->sig;
+        aux->sig = nuevo;
+    }
+}
+
+void mostrarCitas(Cita* lista) {
+    cout << "\nCitas registradas:\n";
+    while (lista) {
+        cout << lista->paciente << " - " << lista->fecha << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Cita* lista = nullptr;
+    agregarCita(lista, "Ana Torres", "22/10/2025");
+    agregarCita(lista, "Carlos Pérez", "25/10/2025");
+    mostrarCitas(lista);
+    return 0;
+}

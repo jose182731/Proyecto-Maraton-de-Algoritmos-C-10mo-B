@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> comandos;
+    string entrada;
+    int opcion;
+
+    do {
+        cout << "\n1. Ejecutar comando\n2. Deshacer comando\n3. Ver historial\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Comando: ";
+            getline(cin, entrada);
+            comandos.push(entrada);
+        } else if (opcion == 2) {
+            if (!comandos.empty()) {
+                cout << "Deshaciendo: " << comandos.top() << endl;
+                comandos.pop();
+            } else cout << "Sin comandos.\n";
+        } else if (opcion == 3) {
+            stack<string> temp = comandos;
+            cout << "Historial:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.top() << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

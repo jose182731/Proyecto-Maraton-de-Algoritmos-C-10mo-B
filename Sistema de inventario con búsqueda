@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+struct Producto {
+    string codigo;
+    string nombre;
+    int cantidad;
+};
+
+void buscarProducto(const vector<Producto>& inventario, string codigo) {
+    for (auto &p : inventario)
+        if (p.codigo == codigo) {
+            cout << "Producto: " << p.nombre << " | Stock: " << p.cantidad << endl;
+            return;
+        }
+    cout << "Producto no encontrado.\n";
+}
+
+int main() {
+    vector<Producto> inventario = {
+        {"A01", "Laptop", 10},
+        {"B02", "Mouse", 50},
+        {"C03", "Teclado", 30}
+    };
+
+    string codigo;
+    cout << "Ingrese código a buscar: ";
+    cin >> codigo;
+    buscarProducto(inventario, codigo);
+    return 0;
+}

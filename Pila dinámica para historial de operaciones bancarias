@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> historial;
+    string operacion;
+    int opcion;
+
+    do {
+        cout << "\n1. Registrar operación\n2. Deshacer última\n3. Ver historial\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Ingrese descripción de la operación: ";
+            getline(cin, operacion);
+            historial.push(operacion);
+        } else if (opcion == 2) {
+            if (!historial.empty()) {
+                cout << "Eliminando: " << historial.top() << endl;
+                historial.pop();
+            } else cout << "Historial vacío.\n";
+        } else if (opcion == 3) {
+            stack<string> temp = historial;
+            cout << "\nOperaciones registradas:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.top() << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

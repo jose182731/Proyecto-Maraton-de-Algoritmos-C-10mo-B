@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Asiento {
+    bool ocupado;
+public:
+    Asiento() : ocupado(false) {}
+    bool estaOcupado() { return ocupado; }
+    void reservar() { ocupado = true; }
+};
+
+class Cine {
+    vector<Asiento> asientos;
+public:
+    Cine(int cantidad) : asientos(cantidad) {}
+    void mostrar() {
+        cout << "\nEstado de asientos:\n";
+        for (size_t i = 0; i < asientos.size(); i++)
+            cout << "[" << (asientos[i].estaOcupado() ? "X" : "_") << "]";
+        cout << endl;
+    }
+    void reservar(int num) {
+        if (num >= 0 && num < asientos.size() && !asientos[num].estaOcupado()) {
+            asientos[num].reservar();
+            cout << "Asiento " << num << " reservado.\n";
+        } else cout << "No disponible.\n";
+    }
+};
+
+int main() {
+    Cine cine(10);
+    cine.mostrar();
+    cine.reservar(3);
+    cine.reservar(7);
+    cine.mostrar();
+    return 0;
+}

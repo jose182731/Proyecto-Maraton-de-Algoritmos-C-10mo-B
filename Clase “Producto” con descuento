@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Producto {
+    string nombre;
+    double precio;
+public:
+    Producto(string n, double p) : nombre(n), precio(p) {}
+    void aplicarDescuento(double d) { precio -= precio * d/100; }
+    void mostrar() { cout << nombre << " | Precio: $" << precio << endl; }
+};
+
+int main() {
+    Producto p("Laptop", 1000);
+    p.mostrar();
+    p.aplicarDescuento(10);
+    p.mostrar();
+    return 0;
+}

@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Venta {
+    string producto;
+    double precio;
+    Venta *sig;
+};
+
+void registrar(Venta *&lista, string p, double pr) {
+    Venta *nuevo = new Venta{p, pr, lista};
+    lista = nuevo;
+}
+
+void mostrar(Venta *lista) {
+    double total = 0;
+    cout << "\nVentas registradas:\n";
+    while (lista) {
+        cout << lista->producto << " - $" << lista->precio << endl;
+        total += lista->precio;
+        lista = lista->sig;
+    }
+    cout << "Total vendido: $" << total << endl;
+}
+
+int main() {
+    Venta *lista = nullptr;
+    registrar(lista, "Camiseta", 20.5);
+    registrar(lista, "Zapatos", 45.0);
+    registrar(lista, "Gorra", 10.0);
+    mostrar(lista);
+    return 0;
+}

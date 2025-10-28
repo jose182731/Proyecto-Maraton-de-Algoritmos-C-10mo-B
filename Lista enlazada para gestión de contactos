@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Contacto {
+    string nombre, telefono;
+    Contacto *sig;
+};
+
+void agregar(Contacto *&lista, string n, string t) {
+    Contacto *nuevo = new Contacto{n, t, lista};
+    lista = nuevo;
+}
+
+void mostrar(Contacto *lista) {
+    cout << "\nAgenda de contactos:\n";
+    while (lista) {
+        cout << "- " << lista->nombre << " | " << lista->telefono << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Contacto *agenda = nullptr;
+    agregar(agenda, "Ana Torres", "0998123456");
+    agregar(agenda, "Luis Pérez", "0999112233");
+    mostrar(agenda);
+    return 0;
+}

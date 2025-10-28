@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Empleado {
+protected:
+    string nombre;
+public:
+    Empleado(string n) : nombre(n) {}
+    virtual double calcularPago() = 0;
+    virtual void mostrar() {
+        cout << "Empleado: " << nombre << endl;
+    }
+};
+
+class EmpleadoFijo : public Empleado {
+    double salario;
+public:
+    EmpleadoFijo(string n, double s) : Empleado(n), salario(s) {}
+    double calcularPago() override { return salario; }
+    void mostrar() override {
+        cout << nombre << " | Tipo: Fijo | Pago: $" << salario << endl;
+    }
+};
+
+class EmpleadoPorHoras : public Empleado {
+    int horas;
+    double tarifa;
+public:
+    EmpleadoPorHoras(string n, int h, double t) : Empleado(n), horas(h), tarifa(t) {}
+    double calcularPago() override { return horas * tarifa; }
+    void mostrar() override {
+        cout << nombre << " | Tipo: Por horas | Pago: $" << calcularPago() << endl;
+    }
+};
+
+int main() {
+    vector<Empleado*> lista = {
+        new EmpleadoFijo("Ana", 1200),
+        new EmpleadoPorHoras("Luis", 40, 10)
+    };
+    for (auto e : lista) e->mostrar();
+    for (auto e : lista) delete e;
+    return 0;
+}

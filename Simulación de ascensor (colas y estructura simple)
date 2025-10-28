@@ -1,0 +1,25 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    queue<int> pisos;
+    int actual = 1, destino;
+    char continuar;
+    do {
+        cout << "Ingrese piso destino (1-10): ";
+        cin >> destino;
+        pisos.push(destino);
+        cout << "¿Otro pasajero? (s/n): ";
+        cin >> continuar;
+    } while (continuar == 's');
+
+    cout << "\nRecorrido del ascensor:\n";
+    while (!pisos.empty()) {
+        cout << "Del piso " << actual << " al piso " << pisos.front() << endl;
+        actual = pisos.front();
+        pisos.pop();
+    }
+    cout << "Ascensor vacío.\n";
+    return 0;
+}

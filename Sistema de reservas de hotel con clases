@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Reserva {
+    string nombre;
+    int dias;
+    double tarifa;
+public:
+    Reserva(string n, int d, double t) : nombre(n), dias(d), tarifa(t) {}
+    double calcularTotal() { return dias * tarifa; }
+    void mostrar() {
+        cout << "Cliente: " << nombre << " | Días: " << dias << " | Total: $" << calcularTotal() << endl;
+    }
+};
+
+int main() {
+    Reserva r1("Ana Torres", 3, 45.5);
+    Reserva r2("Luis Pérez", 5, 60.0);
+    r1.mostrar();
+    r2.mostrar();
+    return 0;
+}

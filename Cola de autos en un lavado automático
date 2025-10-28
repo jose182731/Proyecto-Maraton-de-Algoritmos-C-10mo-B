@@ -1,0 +1,37 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+struct Auto {
+    string placa;
+};
+
+int main() {
+    queue<Auto> cola;
+    int opcion;
+    do {
+        cout << "\n1. Ingresar auto\n2. Atender auto\n3. Mostrar cola\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+        if (opcion == 1) {
+            Auto a;
+            cout << "Placa: ";
+            getline(cin, a.placa);
+            cola.push(a);
+        } else if (opcion == 2) {
+            if (!cola.empty()) {
+                cout << "Atendiendo auto: " << cola.front().placa << endl;
+                cola.pop();
+            } else cout << "No hay autos.\n";
+        } else if (opcion == 3) {
+            queue<Auto> temp = cola;
+            cout << "Autos en espera:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.front().placa << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+    return 0;
+}

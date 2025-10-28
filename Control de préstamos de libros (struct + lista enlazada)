@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Prestamo {
+    string libro, usuario;
+    Prestamo *sig;
+};
+
+void registrar(Prestamo *&lista, string l, string u) {
+    Prestamo *nuevo = new Prestamo{l, u, lista};
+    lista = nuevo;
+}
+
+void mostrar(Prestamo *lista) {
+    cout << "\nRegistros de préstamos:\n";
+    while (lista) {
+        cout << lista->usuario << " tiene el libro \"" << lista->libro << "\"\n";
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Prestamo *registros = nullptr;
+    registrar(registros, "El Principito", "Carlos");
+    registrar(registros, "Cien Años de Soledad", "María");
+    mostrar(registros);
+    return 0;
+}

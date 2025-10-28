@@ -1,0 +1,41 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+struct Ticket {
+    string cliente;
+    string problema;
+};
+
+int main() {
+    queue<Ticket> soporte;
+    int opcion;
+    do {
+        cout << "\n1. Nuevo ticket\n2. Atender ticket\n3. Mostrar pendientes\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            Ticket t;
+            cout << "Nombre del cliente: "; getline(cin, t.cliente);
+            cout << "Problema: "; getline(cin, t.problema);
+            soporte.push(t);
+        } else if (opcion == 2) {
+            if (!soporte.empty()) {
+                cout << "Atendiendo a " << soporte.front().cliente 
+                     << " - " << soporte.front().problema << endl;
+                soporte.pop();
+            } else cout << "No hay tickets pendientes.\n";
+        } else if (opcion == 3) {
+            queue<Ticket> temp = soporte;
+            cout << "\nTickets pendientes:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.front().cliente << " (" << temp.front().problema << ")\n";
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

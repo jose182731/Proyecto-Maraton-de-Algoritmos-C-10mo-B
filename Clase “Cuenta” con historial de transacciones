@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Cuenta {
+    string titular;
+    double saldo;
+    vector<string> historial;
+public:
+    Cuenta(string t, double s) : titular(t), saldo(s) {}
+    void depositar(double m) {
+        saldo += m;
+        historial.push_back("Depósito: $" + to_string(m));
+    }
+    void retirar(double m) {
+        if (m <= saldo) {
+            saldo -= m;
+            historial.push_back("Retiro: $" + to_string(m));
+        } else historial.push_back("Error: fondos insuficientes");
+    }
+    void mostrarHistorial() {
+        cout << "Historial de " << titular << ":\n";
+        for (auto &h : historial) cout << "- " << h << endl;
+        cout << "Saldo final: $" << saldo << endl;
+    }
+};
+
+int main() {
+    Cuenta c("Pedro", 500);
+    c.depositar(200);
+    c.retirar(100);
+    c.retirar(700);
+    c.mostrarHistorial();
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Vehiculo {
+    string placa;
+    Vehiculo *sig;
+};
+
+void ingresar(Vehiculo *&lista, string p) {
+    Vehiculo *nuevo = new Vehiculo{p, lista};
+    lista = nuevo;
+}
+
+void retirar(Vehiculo *&lista, string p) {
+    Vehiculo *actual = lista, *anterior = nullptr;
+    while (actual && actual->placa != p) {
+        anterior = actual;
+        actual = actual->sig;
+    }
+    if (!actual) cout << "Vehículo no encontrado.\n";
+    else {
+        if (!anterior) lista = actual->sig;
+        else anterior->sig = actual->sig;
+        delete actual;
+        cout << "Vehículo retirado.\n";
+    }
+}
+
+void mostrar(Vehiculo *lista) {
+    cout << "\nVehículos en el estacionamiento:\n";
+    while (lista) {
+        cout << "- " << lista->placa << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Vehiculo *parqueo = nullptr;
+    ingresar(parqueo, "ABC123");
+    ingresar(parqueo, "XYZ789");
+    mostrar(parqueo);
+    retirar(parqueo, "ABC123");
+    mostrar(parqueo);
+    return 0;
+}

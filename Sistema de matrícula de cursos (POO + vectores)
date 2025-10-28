@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Curso {
+    string nombre;
+    int inscritos;
+public:
+    Curso(string n, int i = 0) : nombre(n), inscritos(i) {}
+    void inscribir() { inscritos++; }
+    void mostrar() { cout << nombre << " | Inscritos: " << inscritos << endl; }
+};
+
+int main() {
+    vector<Curso> cursos = {{"Matemáticas"}, {"Programación"}, {"Historia"}};
+    cursos[0].inscribir();
+    cursos[0].inscribir();
+    cursos[1].inscribir();
+    for (auto &c : cursos) c.mostrar();
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> operaciones;
+    operaciones.push("Suma 5+3");
+    operaciones.push("Resta 10-2");
+    operaciones.push("Multiplicación 3*4");
+
+    cout << "Última operación: " << operaciones.top() << endl;
+    operaciones.pop();
+
+    cout << "Historial restante:\n";
+    while (!operaciones.empty()) {
+        cout << operaciones.top() << endl;
+        operaciones.pop();
+    }
+
+    return 0;
+}

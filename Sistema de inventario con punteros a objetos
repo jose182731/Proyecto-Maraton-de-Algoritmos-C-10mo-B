@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Producto {
+    string nombre;
+    int stock;
+public:
+    Producto(string n, int s) : nombre(n), stock(s) {}
+    void mostrar() { cout << nombre << " - Stock: " << stock << endl; }
+};
+
+int main() {
+    vector<Producto*> inventario;
+    inventario.push_back(new Producto("Café", 15));
+    inventario.push_back(new Producto("Pan", 8));
+    for (auto p : inventario) p->mostrar();
+
+    for (auto p : inventario) delete p;
+    return 0;
+}

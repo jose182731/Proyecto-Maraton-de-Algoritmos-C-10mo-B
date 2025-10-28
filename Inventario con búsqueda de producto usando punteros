@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Articulo {
+    string nombre;
+    int stock;
+public:
+    Articulo(string n, int s) : nombre(n), stock(s) {}
+    string getNombre() { return nombre; }
+    void mostrar() { cout << nombre << " | Stock: " << stock << endl; }
+};
+
+int main() {
+    vector<Articulo*> inventario;
+    inventario.push_back(new Articulo("Café", 15));
+    inventario.push_back(new Articulo("Té", 10));
+
+    string buscar;
+    cout << "Buscar artículo: ";
+    cin >> buscar;
+
+    for (auto a : inventario) {
+        if (a->getNombre() == buscar) a->mostrar();
+    }
+
+    for (auto a : inventario) delete a;
+    return 0;
+}

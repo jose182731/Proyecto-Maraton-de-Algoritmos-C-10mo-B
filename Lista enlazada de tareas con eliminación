@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Tarea {
+    string nombre;
+    Tarea* sig;
+};
+
+void agregar(Tarea*& lista, string n) {
+    lista = new Tarea{n, lista};
+}
+
+void eliminar(Tarea*& lista, string n) {
+    Tarea *ant = nullptr, *act = lista;
+    while (act && act->nombre != n) {
+        ant = act;
+        act = act->sig;
+    }
+    if (!act) return;
+    if (ant) ant->sig = act->sig;
+    else lista = act->sig;
+    delete act;
+}
+
+void mostrar(Tarea* lista) {
+    cout << "\nTareas actuales:\n";
+    while (lista) {
+        cout << "- " << lista->nombre << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Tarea* lista = nullptr;
+    agregar(lista, "Estudiar");
+    agregar(lista, "Comprar pan");
+    agregar(lista, "Lavar auto");
+    mostrar(lista);
+    eliminar(lista, "Comprar pan");
+    mostrar(lista);
+    return 0;
+}

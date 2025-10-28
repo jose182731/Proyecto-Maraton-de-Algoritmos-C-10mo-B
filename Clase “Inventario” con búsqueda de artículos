@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Articulo {
+    string nombre;
+    int cantidad;
+public:
+    Articulo(string n, int c) : nombre(n), cantidad(c) {}
+    string getNombre() { return nombre; }
+    void mostrar() { cout << nombre << " | Cantidad: " << cantidad << endl; }
+};
+
+class Inventario {
+    vector<Articulo> lista;
+public:
+    void agregar(string n, int c) { lista.emplace_back(n, c); }
+    void buscar(string n) {
+        for (auto &a : lista)
+            if (a.getNombre() == n) { a.mostrar(); return; }
+        cout << "Artículo no encontrado.\n";
+    }
+};
+
+int main() {
+    Inventario inv;
+    inv.agregar("Teclado", 5);
+    inv.agregar("Mouse", 10);
+    inv.buscar("Mouse");
+    inv.buscar("Monitor");
+    return 0;
+}

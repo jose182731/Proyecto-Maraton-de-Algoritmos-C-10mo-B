@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Cliente {
+    string nombre;
+    Cliente* siguiente;
+};
+
+void agregar(Cliente*& lista, string n) {
+    Cliente* nuevo = new Cliente{n, lista};
+    lista = nuevo;
+}
+
+void mostrar(Cliente* lista) {
+    cout << "Clientes registrados:\n";
+    while (lista) {
+        cout << "- " << lista->nombre << endl;
+        lista = lista->siguiente;
+    }
+}
+
+int main() {
+    Cliente* lista = nullptr;
+    agregar(lista, "Ana");
+    agregar(lista, "Luis");
+    agregar(lista, "Carlos");
+    mostrar(lista);
+    return 0;
+}

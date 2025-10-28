@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Estudiante {
+    string nombre;
+    float promedio;
+    Estudiante *sig;
+};
+
+void agregar(Estudiante *&lista, string n, float p) {
+    Estudiante *nuevo = new Estudiante{n, p, lista};
+    lista = nuevo;
+}
+
+void mostrar(Estudiante *lista) {
+    cout << "\nLista de estudiantes:\n";
+    while (lista) {
+        cout << lista->nombre << " | Promedio: " << lista->promedio << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Estudiante *lista = nullptr;
+    agregar(lista, "Juan", 8.5);
+    agregar(lista, "María", 9.2);
+    agregar(lista, "Carlos", 7.8);
+    mostrar(lista);
+    return 0;
+}

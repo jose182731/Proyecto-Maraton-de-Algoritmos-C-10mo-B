@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool esVocal(char c) {
+    c = tolower(c);
+    return c=='a'||c=='e'||c=='i'||c=='o'||c=='u';
+}
+
+int contarVocales(string s, int i = 0) {
+    if (i == s.size()) return 0;
+    return (esVocal(s[i]) ? 1 : 0) + contarVocales(s, i + 1);
+}
+
+int main() {
+    string texto;
+    cout << "Ingrese una frase: ";
+    getline(cin, texto);
+    cout << "Número de vocales: " << contarVocales(texto) << endl;
+    return 0;
+}

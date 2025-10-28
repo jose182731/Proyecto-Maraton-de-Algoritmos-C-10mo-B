@@ -1,0 +1,42 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+struct Pedido {
+    string cliente;
+    string producto;
+};
+
+int main() {
+    queue<Pedido> cola;
+    int opcion;
+    do {
+        cout << "\n1. Agregar pedido\n2. Preparar pedido\n3. Ver pendientes\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            Pedido p;
+            cout << "Cliente: "; getline(cin, p.cliente);
+            cout << "Producto: "; getline(cin, p.producto);
+            cola.push(p);
+        } else if (opcion == 2) {
+            if (!cola.empty()) {
+                cout << "Preparando pedido de " << cola.front().cliente
+                     << " (" << cola.front().producto << ")\n";
+                cola.pop();
+            } else {
+                cout << "No hay pedidos pendientes.\n";
+            }
+        } else if (opcion == 3) {
+            queue<Pedido> temp = cola;
+            cout << "\nPedidos pendientes:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.front().cliente << " (" << temp.front().producto << ")\n";
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+    return 0;
+}

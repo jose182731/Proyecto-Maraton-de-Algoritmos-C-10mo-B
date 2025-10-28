@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int contarPalabras(const string &s, int i = 0, bool enPalabra = false) {
+    if (i == s.size()) return enPalabra ? 1 : 0;
+    if (s[i] == ' ')
+        return (enPalabra ? 1 : 0) + contarPalabras(s, i + 1, false);
+    else
+        return contarPalabras(s, i + 1, true);
+}
+
+int main() {
+    string oracion;
+    cout << "Ingrese una oración: ";
+    getline(cin, oracion);
+    cout << "Número de palabras: " << contarPalabras(oracion) << endl;
+    return 0;
+}

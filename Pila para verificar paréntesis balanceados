@@ -1,0 +1,24 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+bool balanceados(string expr) {
+    stack<char> pila;
+    for (char c : expr) {
+        if (c == '(') pila.push(c);
+        else if (c == ')') {
+            if (pila.empty()) return false;
+            pila.pop();
+        }
+    }
+    return pila.empty();
+}
+
+int main() {
+    string expresion;
+    cout << "Ingrese una expresión con paréntesis: ";
+    cin >> expresion;
+    cout << (balanceados(expresion) ? "Balanceados" : "No balanceados") << endl;
+    return 0;
+}

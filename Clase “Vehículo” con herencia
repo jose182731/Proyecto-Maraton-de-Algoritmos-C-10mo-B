@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Vehiculo {
+protected:
+    string marca;
+    int anio;
+public:
+    Vehiculo(string m, int a) : marca(m), anio(a) {}
+    virtual void mostrar() { cout << "Vehículo: " << marca << " (" << anio << ")\n"; }
+};
+
+class Auto : public Vehiculo {
+    int puertas;
+public:
+    Auto(string m, int a, int p) : Vehiculo(m, a), puertas(p) {}
+    void mostrar() override {
+        cout << "Auto: " << marca << " | Año: " << anio << " | Puertas: " << puertas << endl;
+    }
+};
+
+int main() {
+    Auto a1("Toyota", 2022, 4);
+    a1.mostrar();
+    return 0;
+}

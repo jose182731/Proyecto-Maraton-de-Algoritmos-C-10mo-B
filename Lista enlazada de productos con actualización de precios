@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Producto {
+    string nombre;
+    double precio;
+    Producto* sig;
+};
+
+void agregar(Producto*& lista, string n, double p) {
+    Producto* nuevo = new Producto{n, p, lista};
+    lista = nuevo;
+}
+
+void actualizar(Producto* lista, string n, double nuevoPrecio) {
+    while (lista) {
+        if (lista->nombre == n) {
+            lista->precio = nuevoPrecio;
+            return;
+        }
+        lista = lista->sig;
+    }
+}
+
+void mostrar(Producto* lista) {
+    cout << "\nInventario:\n";
+    while (lista) {
+        cout << lista->nombre << " - $" << lista->precio << endl;
+        lista = lista->sig;
+    }
+}
+
+int main() {
+    Producto* lista = nullptr;
+    agregar(lista, "Café", 1.5);
+    agregar(lista, "Azúcar", 0.8);
+    agregar(lista, "Leche", 1.2);
+    mostrar(lista);
+    actualizar(lista, "Leche", 1.5);
+    mostrar(lista);
+    return 0;
+}

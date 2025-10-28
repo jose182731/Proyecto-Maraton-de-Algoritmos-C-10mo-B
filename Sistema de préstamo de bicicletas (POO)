@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Bicicleta {
+    string modelo;
+    bool prestada;
+public:
+    Bicicleta(string m) : modelo(m), prestada(false) {}
+    void prestar() {
+        if (!prestada) {
+            prestada = true;
+            cout << modelo << " ha sido prestada.\n";
+        } else {
+            cout << modelo << " ya está prestada.\n";
+        }
+    }
+    void devolver() {
+        if (prestada) {
+            prestada = false;
+            cout << modelo << " ha sido devuelta.\n";
+        } else {
+            cout << modelo << " no estaba prestada.\n";
+        }
+    }
+    void mostrar() { cout << modelo << " | " << (prestada ? "Prestada" : "Disponible") << endl; }
+};
+
+int main() {
+    Bicicleta b1("Mountain Bike");
+    Bicicleta b2("Road Bike");
+
+    b1.mostrar();
+    b1.prestar();
+    b1.mostrar();
+    b1.devolver();
+    b1.mostrar();
+
+    b2.prestar();
+    b2.mostrar();
+
+    return 0;
+}

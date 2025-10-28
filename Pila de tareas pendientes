@@ -1,0 +1,36 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> tareas;
+    int opcion;
+    string tarea;
+
+    do {
+        cout << "\n1. Agregar tarea\n2. Completar tarea\n3. Ver tareas\n4. Salir\nOpción: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            cout << "Ingrese la tarea: ";
+            getline(cin, tarea);
+            tareas.push(tarea);
+        } else if (opcion == 2) {
+            if (!tareas.empty()) {
+                cout << "Completando: " << tareas.top() << endl;
+                tareas.pop();
+            } else cout << "No hay tareas.\n";
+        } else if (opcion == 3) {
+            stack<string> temp = tareas;
+            cout << "\nTareas pendientes:\n";
+            while (!temp.empty()) {
+                cout << "- " << temp.top() << endl;
+                temp.pop();
+            }
+        }
+    } while (opcion != 4);
+
+    return 0;
+}

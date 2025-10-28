@@ -1,0 +1,16 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void invertir(string& s, int i, int j) {
+    if (i >= j) return;
+    swap(s[i], s[j]);
+    invertir(s, i + 1, j - 1);
+}
+
+int main() {
+    string texto = "recursividad";
+    invertir(texto, 0, texto.size() - 1);
+    cout << "Invertido: " << texto << endl;
+    return 0;
+}

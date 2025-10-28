@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Empleado {
+    string nombre;
+    double salario;
+public:
+    Empleado(string n, double s) : nombre(n), salario(s) {}
+    void aumentar(double porcentaje) { salario += salario * porcentaje / 100; }
+    void mostrar() { cout << nombre << " gana $" << salario << endl; }
+};
+
+int main() {
+    Empleado e1("Laura", 1200), e2("Pedro", 950);
+    e1.aumentar(10);
+    e2.aumentar(5);
+    e1.mostrar();
+    e2.mostrar();
+    return 0;
+}

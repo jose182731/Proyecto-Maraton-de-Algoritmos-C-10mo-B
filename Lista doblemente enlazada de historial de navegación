@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Pagina {
+    string url;
+    Pagina* ant;
+    Pagina* sig;
+};
+
+void agregar(Pagina*& inicio, Pagina*& fin, string url) {
+    Pagina* nueva = new Pagina{url, fin, nullptr};
+    if (fin) fin->sig = nueva;
+    else inicio = nueva;
+    fin = nueva;
+}
+
+void mostrarAdelante(Pagina* inicio) {
+    cout << "Historial (adelante):\n";
+    while (inicio) {
+        cout << inicio->url << endl;
+        inicio = inicio->sig;
+    }
+}
+
+int main() {
+    Pagina *inicio = nullptr, *fin = nullptr;
+    agregar(inicio, fin, "google.com");
+    agregar(inicio, fin, "openai.com");
+    agregar(inicio, fin, "stackoverflow.com");
+    mostrarAdelante(inicio);
+    return 0;
+}

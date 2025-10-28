@@ -1,0 +1,21 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    stack<string> platos;
+    platos.push("Ensalada");
+    platos.push("Pizza");
+    platos.push("Sopa");
+
+    cout << "Último plato: " << platos.top() << endl;
+    platos.pop();
+
+    cout << "Platos restantes:\n";
+    while (!platos.empty()) {
+        cout << platos.top() << endl;
+        platos.pop();
+    }
+    return 0;
+}

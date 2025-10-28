@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Pasajero {
+    string nombre;
+    Pasajero *ant, *sig;
+};
+
+void subir(Pasajero *&ultimo, string n) {
+    Pasajero *nuevo = new Pasajero{n, ultimo, nullptr};
+    if (ultimo) ultimo->sig = nuevo;
+    ultimo = nuevo;
+}
+
+void mostrar(Pasajero *primero) {
+    cout << "\nPasajeros en el tren:\n";
+    while (primero) {
+        cout << "- " << primero->nombre << endl;
+        primero = primero->sig;
+    }
+}
+
+int main() {
+    Pasajero *inicio = nullptr, *fin = nullptr;
+    subir(fin, "Juan");
+    if (!inicio) inicio = fin;
+    subir(fin, "Sofía");
+    subir(fin, "Miguel");
+    mostrar(inicio);
+    return 0;
+}

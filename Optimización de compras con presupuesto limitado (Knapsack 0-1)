@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Función que retorna el máximo valor que se puede obtener con un presupuesto limitado
+int knapsack(vector<int>& precios, vector<int>& valores, int presupuesto) {
+    int n = precios.size();
+    vector<vector<int>> dp(n+1, vector<int>(presupuesto+1, 0));
+
+    for(int i=1;i<=n;i++){
+        for(int w=0;w<=presupuesto;w++){
+            if(precios[i-1] <= w)
+                dp[i][w] = max(dp[i-1][w], valores[i-1] + dp[i-1][w - precios[i-1]]);
+            else
+                dp[i][w] = dp[i-1][w];
+        }
+    }
+    return dp[n][presupuesto];
+}
+
+int main(){
+    vector<int> precios = {60, 100, 120}; // Precios de los productos
+    vector<int> valores = {10, 20, 30};   // Valor de satisfacción de los productos
+    int presupuesto = 220;
+
+    cout << "Valor máximo que se puede obtener: " << knapsack(precios, valores, presupuesto) << endl;
+    return 0;
+}

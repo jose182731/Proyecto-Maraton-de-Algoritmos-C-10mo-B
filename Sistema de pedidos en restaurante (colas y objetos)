@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Pedido { int id; string cliente; string comida; };
+
+class Restaurante {
+    queue<Pedido> cola;
+public:
+    void nuevoPedido(Pedido p){ cola.push(p); }
+    void procesarPedido(){
+        if(cola.empty()){ cout<<"No hay pedidos.\n"; return; }
+        Pedido p=cola.front(); cola.pop();
+        cout<<"Preparando pedido "<<p.id<<" de "<<p.cliente<<": "<<p.comida<<"\n";
+    }
+};
+
+int main(){
+    Restaurante r;
+    r.nuevoPedido({1,"Carlos","Pizza"});
+    r.nuevoPedido({2,"Ana","Hamburguesa"});
+    r.procesarPedido();
+    r.procesarPedido();
+    return 0;
+}

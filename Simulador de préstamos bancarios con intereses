@@ -1,0 +1,16 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main(){
+    double monto, tasa;
+    int años;
+    cout<<"Monto del préstamo: "; cin>>monto;
+    cout<<"Tasa anual (%): "; cin>>tasa;
+    cout<<"Años: "; cin>>años;
+
+    double interes = monto * pow(1 + tasa/100, años) - monto;
+    cout<<"Interés total a pagar: $"<<interes<<endl;
+    cout<<"Monto total: $"<<monto+interes<<endl;
+    return 0;
+}

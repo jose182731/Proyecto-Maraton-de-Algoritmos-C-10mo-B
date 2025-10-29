@@ -1,1 +1,17 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
 
+int main(){
+    stack<string> historial;
+    historial.push("Abrir documento");
+    historial.push("Escribir texto");
+    historial.push("Guardar archivo");
+
+    cout<<"Acción actual: "<<historial.top()<<endl;
+    historial.pop();
+    cout<<"Deshacer última acción...\n";
+    cout<<"Acción actual: "<<historial.top()<<endl;
+    return 0;
+}

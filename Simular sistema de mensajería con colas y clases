@@ -1,0 +1,23 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+class Mensaje{
+public:
+    string remitente, texto;
+    Mensaje(string r,string t):remitente(r),texto(t){}
+};
+
+int main(){
+    queue<Mensaje> bandeja;
+    bandeja.push({"Carlos","Hola, ¿cómo estás?"});
+    bandeja.push({"Ana","Te envío el informe."});
+    bandeja.push({"Luis","Reunión a las 3 PM."});
+
+    while(!bandeja.empty()){
+        Mensaje m=bandeja.front(); bandeja.pop();
+        cout<<"De: "<<m.remitente<<" | "<<m.texto<<endl;
+    }
+    return 0;
+}

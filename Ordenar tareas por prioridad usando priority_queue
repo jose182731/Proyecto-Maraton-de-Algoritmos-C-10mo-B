@@ -1,0 +1,25 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+struct Tarea {
+    string nombre;
+    int prioridad;
+    bool operator<(const Tarea& otra) const {
+        return prioridad < otra.prioridad; // Mayor prioridad primero
+    }
+};
+
+int main(){
+    priority_queue<Tarea> pq;
+    pq.push({"Revisar correos", 2});
+    pq.push({"Terminar informe", 5});
+    pq.push({"Hacer copias", 1});
+
+    while(!pq.empty()){
+        Tarea t = pq.top(); pq.pop();
+        cout << t.nombre << " (Prioridad " << t.prioridad << ")\n";
+    }
+    return 0;
+}

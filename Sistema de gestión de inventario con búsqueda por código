@@ -1,0 +1,21 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string, double> inventario = {
+        {"A123", 45.5}, {"B222", 12.9}, {"C315", 99.0}
+    };
+
+    string codigo;
+    cout<<"Ingrese el código del producto: ";
+    cin>>codigo;
+
+    if(inventario.count(codigo))
+        cout<<"Precio: $"<<inventario[codigo]<<endl;
+    else
+        cout<<"Producto no encontrado."<<endl;
+
+    return 0;
+}

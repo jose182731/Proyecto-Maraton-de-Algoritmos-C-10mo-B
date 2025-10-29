@@ -1,0 +1,28 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Persona {
+protected:
+    string nombre;
+    int edad;
+public:
+    Persona(string n,int e):nombre(n),edad(e){}
+    virtual void mostrar(){ cout<<nombre<<" ("<<edad<<" años)"<<endl; }
+};
+
+class Paciente: public Persona {
+    string diagnostico;
+public:
+    Paciente(string n,int e,string d):Persona(n,e),diagnostico(d){}
+    void mostrar() override {
+        cout<<"Paciente: "<<nombre<<" - Diagnóstico: "<<diagnostico<<endl;
+    }
+};
+
+int main(){
+    vector<Paciente> lista={{"Carlos",40,"Hipertensión"},{"Ana",28,"Migraña"}};
+    for(auto &p:lista) p.mostrar();
+    return 0;
+}

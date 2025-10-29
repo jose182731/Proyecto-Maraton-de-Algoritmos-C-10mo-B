@@ -1,0 +1,18 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string,int> inventario={{"Laptop",5},{"Mouse",2},{"Teclado",1}};
+
+    inventario["Mouse"]+=5;
+    inventario["Teclado"]-=1;
+
+    for(auto &i:inventario){
+        cout<<i.first<<" -> "<<i.second;
+        if(i.second<3) cout<<" [ALERTA]";
+        cout<<endl;
+    }
+    return 0;
+}

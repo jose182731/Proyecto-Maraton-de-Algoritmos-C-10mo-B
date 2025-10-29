@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Cuenta {
+    string titular;
+    double saldo;
+public:
+    Cuenta(string t,double s):titular(t),saldo(s){}
+    void depositar(double m){ saldo+=m; }
+    bool retirar(double m){ if(m>saldo) return false; saldo-=m; return true; }
+    string getTitular(){ return titular; }
+    double getSaldo(){ return saldo; }
+};
+
+class Banco {
+    vector<Cuenta> cuentas;
+public:
+    void agregarCuenta(string t,double s){ cuentas.push_back({t,s}); }
+    void transferir(string de,string a,double monto){
+        Cuenta *c1=nullptr,*c2=nullptr;
+        for(auto &c:cuentas){
+            if(c.getTitular()==de) c1=&c;
+            if(c.getTitular()==a) c2=&c;
+        }
+        if(c1 && c2 && c1->retirar(monto)){
+            c2->depositar(monto);
+            cout<<"Transferencia exitosa: "<<monto<<" de "<<de<<" a "<<a<<"\n";
+        } else cout<<"Error en transferencia\n";
+    }
+    void mostrar(){
+        for(auto &c:cuentas)
+            cout<<c.getTitular()<<" -> $" << c.getSaldo() << "\n";
+    }
+};
+
+int main(){
+    Banco b;
+    b.agregarCuenta("Ana",500);
+    b.agregarCuenta("Luis",300);
+    b.transferir("Ana","Luis",200);
+    b.mostrar();
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+#define INF 1e9
+typedef pair<int,int> Par;
+
+void dijkstra(vector<vector<Par>>& grafo, int origen){
+    vector<int> dist(grafo.size(), INF);
+    dist[origen]=0;
+    priority_queue<Par,vector<Par>,greater<Par>> pq;
+    pq.push({0,origen});
+
+    while(!pq.empty()){
+        int d=pq.top().first;
+        int u=pq.top().second;
+        pq.pop();
+
+        if(d>dist[u]) continue;
+        for(auto &ar: grafo[u]){
+            int v=ar.first, peso=ar.second;
+            if(dist[u]+peso<dist[v]){
+                dist[v]=dist[u]+peso;
+                pq.push({dist[v],v});
+            }
+        }
+    }
+
+    cout<<"Distancias desde "<<origen<<":\n";
+    for(int i=0;i<dist.size();i++)
+        cout<<"Nodo "<<i<<": "<<dist[i]<<endl;
+}
+
+int main()
+    int V=5;
+    vector<vector<Par>> grafo(V);
+    grafo[0]={{1,10},{3,5}};
+    grafo[1]={{2,1},{3,2}};
+    grafo[2]={{4,4}};
+    grafo[3]={{1,3},{2,9},{4,2}};
+    grafo[4]={{0,7},{2,6}};
+
+    dijkstra(grafo,0);
+    return 0;
+}

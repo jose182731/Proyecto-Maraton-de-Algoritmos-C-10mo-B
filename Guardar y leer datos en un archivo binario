@@ -1,0 +1,23 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Alumno {
+    char nombre[30];
+    int edad;
+};
+
+int main(){
+    Alumno a={"Pedro",22};
+    ofstream salida("alumno.dat",ios::binary);
+    salida.write((char*)&a,sizeof(Alumno));
+    salida.close();
+
+    Alumno b;
+    ifstream entrada("alumno.dat",ios::binary);
+    entrada.read((char*)&b,sizeof(Alumno));
+    entrada.close();
+
+    cout<<"Nombre: "<<b.nombre<<" | Edad: "<<b.edad<<endl;
+    return 0;
+}

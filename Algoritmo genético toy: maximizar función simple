@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+int fitness(int x){ return -(x-42)*(x-42)+1000; } // pico en 42
+int main(){
+    mt19937 rng(123);
+    uniform_int_distribution<int> dist(0,100);
+    vector<int> pop(20);
+    for(auto &x:pop) x=dist(rng);
+    for(int gen=0;gen<50;gen++){
+        sort(pop.begin(),pop.end(),[](int a,int b){ return a>b; }); // simplificado por fitness proxy
+        // crossover: average of two best
+        int child = (pop[0]+pop[1])/2;
+        // mutation
+        if(dist(rng)<10) child = max(0, min(100, child + (int(dist(rng)%11)-5)));
+        pop.back()=child;
+        // simple shuffle to simulate generations
+        shuffle(pop.begin()+1, pop.end(), rng);
+    }
+    cout<<"Mejor individuo (aprox): "<<pop[0]<<" fitness="<<fitness(pop[0])<<"\n";
+    return 0;
+}

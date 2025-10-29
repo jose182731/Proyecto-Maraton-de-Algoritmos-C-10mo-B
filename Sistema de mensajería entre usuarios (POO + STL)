@@ -1,0 +1,26 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Mensajero {
+    map<string, vector<string>> bandeja;
+public:
+    void enviar(string de, string para, string msg){
+        bandeja[para].push_back("De "+de+": "+msg);
+    }
+    void verMensajes(string usuario){
+        cout<<"Mensajes de "<<usuario<<":\n";
+        for(auto &m: bandeja[usuario]) cout<<m<<endl;
+    }
+};
+
+int main(){
+    Mensajero m;
+    m.enviar("Ana","Luis","Hola, ¿cómo estás?");
+    m.enviar("Luis","Ana","Todo bien, gracias.");
+    m.verMensajes("Ana");
+    m.verMensajes("Luis");
+    return 0;
+}

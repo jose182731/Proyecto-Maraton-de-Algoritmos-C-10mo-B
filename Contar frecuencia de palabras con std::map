@@ -1,0 +1,14 @@
+#include <iostream>
+#include <map>
+#include <sstream>
+using namespace std;
+
+int main(){
+    string texto = "hola mundo hola c++ mundo c++ c++";
+    map<string,int> freq;
+    string palabra;
+    stringstream ss(texto);
+    while(ss >> palabra) freq[palabra]++;
+    for(auto p: freq) cout << p.first << " -> " << p.second << endl;
+    return 0;
+}

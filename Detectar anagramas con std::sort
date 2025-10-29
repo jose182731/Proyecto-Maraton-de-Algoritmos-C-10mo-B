@@ -1,0 +1,15 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool esAnagrama(string a, string b){
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    return a==b;
+}
+
+int main(){
+    string a="amor", b="roma";
+    cout << (esAnagrama(a,b)? "Son anagramas" : "No son anagramas") << endl;
+    return 0;
+}

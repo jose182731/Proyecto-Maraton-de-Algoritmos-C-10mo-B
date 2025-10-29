@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class ColaCircular{
+    int *arr, frente, final, tam, capacidad;
+public:
+    ColaCircular(int cap): frente(0), final(-1), tam(0), capacidad(cap){
+        arr = new int[cap];
+    }
+    ~ColaCircular(){ delete[] arr; }
+    void encolar(int x){
+        if(tam==capacidad){ cout << "Cola llena\n"; return; }
+        final = (final+1)%capacidad;
+        arr[final]=x;
+        tam++;
+    }
+    void desencolar(){
+        if(tam==0){ cout << "Cola vacía\n"; return; }
+        frente = (frente+1)%capacidad;
+        tam--;
+    }
+    void mostrar(){
+        for(int i=0;i<tam;i++)
+            cout << arr[(frente+i)%capacidad] << " ";
+        cout << endl;
+    }
+};
+
+int main(){
+    ColaCircular c(5);
+    c.encolar(10); c.encolar(20); c.encolar(30);
+    c.mostrar();
+    c.desencolar();
+    c.mostrar();
+    return 0;
+}

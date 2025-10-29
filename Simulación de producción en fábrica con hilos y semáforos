@@ -1,0 +1,27 @@
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <vector>
+using namespace std;
+
+mutex mtx;
+
+class Maquina {
+    string nombre;
+    int produccion;
+public:
+    Maquina(string n): nombre(n), produccion(0) {}
+    void producir(int cantidad){
+        lock_guard<mutex> lock(mtx);
+        produccion += cantidad;
+        cout << nombre << " produjo " << cantidad << " unidades. Total: " << produccion << endl;
+    }
+};
+
+int main(){
+    Maquina m1("RobotA"), m2("RobotB");
+    thread t1([&]{ for(int i=0;i<5;i++) m1.producir(10); });
+    thread t2([&]{ for(int i=0;i<5;i++) m2.producir(15); });
+    t1.join(); t2.join();
+    return 0;
+}

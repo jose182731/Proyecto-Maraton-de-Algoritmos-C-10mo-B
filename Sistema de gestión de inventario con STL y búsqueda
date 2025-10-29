@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Producto {
+    string nombre;
+    int cantidad;
+    bool operator<(const Producto &p) const { return nombre < p.nombre; }
+};
+
+int main(){
+    vector<Producto> inventario={{"Laptop",5},{"Mouse",10},{"Teclado",7}};
+    sort(inventario.begin(), inventario.end());
+
+    string buscar="Mouse";
+    if(binary_search(inventario.begin(),inventario.end(),Producto{buscar,0}))
+        cout<<buscar<<" encontrado.\n";
+    else
+        cout<<buscar<<" no encontrado.\n";
+
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Cuenta {
+    string titular; double saldo;
+public:
+    Cuenta(string t,double s):titular(t),saldo(s){}
+    void depositar(double m){ saldo+=m; }
+    void retirar(double m){ if(saldo>=m) saldo-=m; }
+    void mostrar(){ cout<<titular<<" - Saldo: "<<saldo<<endl; }
+};
+
+int main(){
+    vector<Cuenta> cuentas={{"Ana",500},{"Luis",1000}};
+    cuentas[0].depositar(200);
+    cuentas[1].retirar(300);
+    for(auto &c:cuentas) c.mostrar();
+    return 0;
+}

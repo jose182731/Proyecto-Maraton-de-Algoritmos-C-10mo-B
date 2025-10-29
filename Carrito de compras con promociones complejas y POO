@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Producto{
+public:
+    string nombre;
+    double precio;
+    Producto(string n,double p):nombre(n),precio(p){}
+};
+
+class Carrito{
+    vector<Producto> items;
+public:
+    void agregar(Producto p){ items.push_back(p); }
+    double total(){
+        double t=0;
+        for(auto &i: items) t+=i.precio;
+        if(items.size()>=3) t*=0.8; // 20% de descuento por más de 3 items
+        return t;
+    }
+};
+
+int main(){
+    Carrito c;
+    c.agregar({"Laptop",1000});
+    c.agregar({"Mouse",50});
+    c.agregar({"Teclado",100});
+    c.agregar({"Monitor",200});
+    cout<<"Total a pagar con descuento: $"<<c.total()<<endl;
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Cliente {
+    string nombre;
+    int prioridad; // mayor = VIP
+    bool operator<(const Cliente& c) const { return prioridad < c.prioridad; }
+};
+
+int main() {
+    priority_queue<Cliente> cola;
+    cola.push({"Ana",1});
+    cola.push({"Luis",3});
+    cola.push({"Marta",2});
+
+    while(!cola.empty()){
+        auto c=cola.top(); cola.pop();
+        cout<<"Atendiendo "<<c.nombre<<" (Prioridad "<<c.prioridad<<")\n";
+    }
+    return 0;
+}

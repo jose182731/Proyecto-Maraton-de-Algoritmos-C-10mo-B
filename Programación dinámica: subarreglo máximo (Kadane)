@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int maxSubarray(vector<int>& arr){
+    int maxActual = arr[0], maxGlobal = arr[0];
+    for(int i=1;i<arr.size();i++){
+        maxActual = max(arr[i], maxActual+arr[i]);
+        maxGlobal = max(maxGlobal, maxActual);
+    }
+    return maxGlobal;
+}
+
+int main(){
+    vector<int> arr = {-2,1,-3,4,-1,2,1,-5,4};
+    cout << "Máxima suma de subarreglo: " << maxSubarray(arr) << endl;
+    return 0;
+}

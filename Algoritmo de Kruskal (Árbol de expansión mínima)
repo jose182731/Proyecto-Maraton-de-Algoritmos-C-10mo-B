@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Arista{
+    int u,v,peso;
+};
+
+struct DSU{
+    vector<int> padre;
+    DSU(int n){ padre.resize(n); for(int i=0;i<n;i++) padre[i]=i; }
+    int find(int x){ return padre[x]==x?x:padre[x]=find(padre[x]); }
+    bool unite(int a,int b){
+        a=find(a); b=find(b);
+        if(a==b) return false;
+        padre[a]=b;
+        return true;
+    }
+};
+
+int main(){
+    vector<Arista> aristas={{0,1,10},{0,2,6},{0,3,5},{1,3,15},{2,3,4}};
+    sort(aristas.begin(), aristas.end(), [](Arista a, Arista b){return a.peso<b.peso;});
+    DSU dsu(4);
+    int costo=0;
+    for(auto &e: aristas){
+        if(dsu.unite(e.u,e.v)){
+            cout << "Usando arista ("<<e.u<<","<<e.v<<") peso "<<e.peso<<endl;
+            costo+=e.peso;
+        }
+    }
+    cout << "Costo mínimo total: " << costo << endl;
+    return 0;
+}

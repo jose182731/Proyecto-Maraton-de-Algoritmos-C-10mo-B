@@ -1,0 +1,19 @@
+#include <iostream>
+#include <queue>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+int main(){
+    queue<string> notificaciones;
+    notificaciones.push("Nuevo mensaje");
+    notificaciones.push("Actualización disponible");
+    notificaciones.push("Recordatorio de reunión");
+
+    while(!notificaciones.empty()){
+        cout<<"📩 "<<notificaciones.front()<<endl;
+        notificaciones.pop();
+        this_thread::sleep_for(chrono::milliseconds(500));
+    }
+    return 0;
+}

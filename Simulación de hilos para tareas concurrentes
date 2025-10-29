@@ -1,0 +1,19 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+void tarea(string nombre, int tiempo){
+    cout<<"Iniciando "<<nombre<<endl;
+    this_thread::sleep_for(chrono::seconds(tiempo));
+    cout<<nombre<<" completada en "<<tiempo<<" segundos.\n";
+}
+
+int main(){
+    thread t1(tarea,"Descarga",3);
+    thread t2(tarea,"Procesamiento",5);
+    t1.join();
+    t2.join();
+    cout<<"Todas las tareas finalizadas."<<endl;
+    return 0;
+}

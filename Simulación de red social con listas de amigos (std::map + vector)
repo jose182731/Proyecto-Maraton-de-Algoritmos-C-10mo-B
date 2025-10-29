@@ -1,0 +1,16 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+int main(){
+    map<string, vector<string>> red;
+    red["Ana"] = {"Luis", "María"};
+    red["Luis"] = {"Ana"};
+    red["María"] = {"Ana"};
+
+    string usuario = "Ana";
+    cout << usuario << " tiene amigos: ";
+    for(string amigo : red[usuario]) cout << amigo << " ";
+    return 0;
+}

@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Producto {
+public:
+    string nombre; int stock;
+    Producto(string n,int s):nombre(n),stock(s){}
+    void actualizar(int s){ stock+=s; }
+    void mostrar(){ cout<<nombre<<" -> "<<stock<<(stock<3?" [ALERTA]":"")<<endl; }
+};
+
+int main(){
+    vector<Producto> inventario={{"Laptop",5},{"Mouse",2},{"Teclado",1}};
+    inventario[1].actualizar(3);
+    for(auto &p:inventario) p.mostrar();
+    return 0;
+}

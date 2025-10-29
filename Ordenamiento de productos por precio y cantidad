@@ -1,0 +1,14 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Producto { string nombre; double precio; int cantidad; };
+bool cmp(const Producto &a,const Producto &b){ return a.precio>b.precio || (a.precio==b.precio && a.cantidad>b.cantidad); }
+
+int main(){
+    vector<Producto> lista={{"Laptop",900,5},{"Mouse",20,10},{"Monitor",120,3}};
+    sort(lista.begin(),lista.end(),cmp);
+    for(auto &p:lista) cout<<p.nombre<<" -> $"<<p.precio<<" -> "<<p.cantidad<<endl;
+    return 0;
+}

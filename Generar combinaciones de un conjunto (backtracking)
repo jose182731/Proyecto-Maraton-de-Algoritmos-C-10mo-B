@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void combinaciones(vector<int>& nums, vector<int>& actual, int i){
+    if(i==nums.size()){
+        for(int x : actual) cout << x << " ";
+        cout << endl;
+        return;
+    }
+    actual.push_back(nums[i]);
+    combinaciones(nums, actual, i+1);
+    actual.pop_back();
+    combinaciones(nums, actual, i+1);
+}
+
+int main(){
+    vector<int> nums={1,2,3};
+    vector<int> actual;
+    combinaciones(nums, actual, 0);
+    return 0;
+}

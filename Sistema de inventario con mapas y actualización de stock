@@ -1,0 +1,16 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main(){
+    map<string,int> inventario;
+    inventario["Laptop"]=5;
+    inventario["Mouse"]=10;
+    inventario["Teclado"]=7;
+
+    inventario["Mouse"]+=5; // nuevo stock
+
+    for(auto &i:inventario)
+        cout<<i.first<<" -> "<<i.second<<" unidades\n";
+    return 0;
+}

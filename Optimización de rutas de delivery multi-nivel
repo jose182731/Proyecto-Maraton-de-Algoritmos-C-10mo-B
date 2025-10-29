@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+struct Nodo{ int id; int tiempo; };
+
+void deliveryRutas(int inicio, vector<vector<pair<int,int>>>& grafo){
+    int n=grafo.size();
+    vector<int> tiempo(n,1e9);
+    tiempo[inicio]=0;
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;
+    pq.push({0,inicio});
+
+    while(!pq.empty()){
+        auto [t,u]=pq.top(); pq.pop();
+        for(auto [v,w]:grafo[u]){
+            if(t+w<tiempo[v]){ tiempo[v]=t+w; pq.push({tiempo[v],v}); }
+        }
+    }
+
+    for(int i=0;i<n;i++) cout<<"Nodo "<<i<<" -> Tiempo mínimo: "<<tiempo[i]<<endl;
+}
+
+int main(){
+    vector<vector<pair<int,int>>> grafo={
+        {{1,5},{2,10}}, {{0,5},{3,2}}, {{0,10},{3,3}}, {{1,2},{2,3}}
+    };
+    deliveryRutas(0,grafo);
+    return 0;
+}

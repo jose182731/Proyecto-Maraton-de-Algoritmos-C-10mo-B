@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Producto{
+public:
+    string nombre;
+    int cantidad;
+    Producto(string n,int c):nombre(n),cantidad(c){}
+};
+
+int main(){
+    vector<Producto> inventario;
+    inventario.push_back({"Manzanas",30});
+    inventario.push_back({"Peras",20});
+
+    string buscar;
+    cout << "Ingrese producto: ";
+    cin >> buscar;
+
+    for(auto &p: inventario){
+        if(p.nombre==buscar){
+            cout << "Stock: " << p.cantidad << endl;
+            p.cantidad -= 5;
+            cout << "Después de venta: " << p.cantidad << endl;
+        }
+    }
+    return 0;
+}

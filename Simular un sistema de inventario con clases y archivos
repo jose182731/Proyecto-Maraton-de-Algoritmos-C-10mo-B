@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+class Producto {
+    string nombre;
+    int cantidad;
+    double precio;
+public:
+    Producto(string n,int c,double p):nombre(n),cantidad(c),precio(p){}
+    void guardar(ofstream &out){
+        out<<nombre<<","<<cantidad<<","<<precio<<"\n";
+    }
+    void mostrar(){
+        cout<<"Producto: "<<nombre<<" | Cantidad: "<<cantidad<<" | Precio: "<<precio<<endl;
+    }
+};
+
+int main(){
+    vector<Producto> inventario={
+        {"Teclado",10,25.5},{"Mouse",20,15.0},{"Monitor",5,120.0}
+    };
+
+    ofstream archivo("inventario.csv");
+    for(auto &p: inventario) p.guardar(archivo);
+    archivo.close();
+
+    cout<<"Inventario guardado correctamente.\n";
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int maxValorProyectos(vector<int>& costos, vector<int>& beneficios, int presupuesto){
+    int n = costos.size();
+    vector<vector<int>> dp(n+1, vector<int>(presupuesto+1,0));
+    for(int i=1;i<=n;i++)
+        for(int j=0;j<=presupuesto;j++)
+            dp[i][j] = (costos[i-1]<=j) ? max(dp[i-1][j], beneficios[i-1]+dp[i-1][j-costos[i-1]]) : dp[i-1][j];
+    return dp[n][presupuesto];
+}
+
+int main(){
+    vector<int> costos = {50, 70, 30};
+    vector<int> beneficios = {60, 100, 50};
+    int presupuesto = 100;
+    cout<<"Beneficio máximo posible: "<<maxValorProyectos(costos,beneficios,presupuesto)<<endl;
+    return 0;
+}

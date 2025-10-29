@@ -1,0 +1,22 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string,int> presidente, tesorero;
+    presidente["Ana"]++; presidente["Luis"]++; presidente["Ana"]++;
+    tesorero["Marta"]++; tesorero["Luis"]++; tesorero["Luis"]++;
+
+    auto ganador = [](map<string,int>& votos){
+        string g; int maxV=0;
+        for(auto &v:votos){
+            if(v.second>maxV){ maxV=v.second; g=v.first; }
+        }
+        return g;
+    };
+
+    cout<<"Ganador Presidente: "<<ganador(presidente)<<endl;
+    cout<<"Ganador Tesorero: "<<ganador(tesorero)<<endl;
+    return 0;
+}

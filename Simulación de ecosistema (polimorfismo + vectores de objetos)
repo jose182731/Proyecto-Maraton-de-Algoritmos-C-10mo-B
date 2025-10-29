@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Animal {
+public:
+    virtual void sonido()=0;
+    virtual ~Animal(){}
+};
+
+class Leon : public Animal { void sonido() override { cout<<"Ruge el león\n"; } };
+class Pajaro : public Animal { void sonido() override { cout<<"Canta el pájaro\n"; } };
+
+int main(){
+    vector<Animal*> ecosistema = { new Leon(), new Pajaro(), new Leon() };
+    for(auto a:ecosistema){ a->sonido(); delete a; }
+    return 0;
+}

@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+void BFS(int inicio, vector<vector<int>>& g){
+    vector<bool> visit(g.size(),false);
+    vector<int> pasos(g.size(),0);
+    queue<int> q;
+    visit[inicio]=true; q.push(inicio);
+
+    while(!q.empty()){
+        int v=q.front(); q.pop();
+        cout<<"Nodo "<<v<<" -> Pasos: "<<pasos[v]<<endl;
+        for(int u:g[v]){
+            if(!visit[u]){ visit[u]=true; pasos[u]=pasos[v]+1; q.push(u); }
+        }
+    }
+}
+
+int main(){
+    vector<vector<int>> ciudad={{1,2},{0,3},{0,3,4},{1,2,4},{2,3}};
+    cout<<"Rutas desde nodo 0:\n";
+    BFS(0,ciudad);
+    return 0;
+}

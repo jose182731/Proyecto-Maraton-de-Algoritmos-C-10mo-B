@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool esSeguro(vector<int>& tab,int fila,int col){
+    for(int i=0;i<fila;i++)
+        if(tab[i]==col || abs(tab[i]-col)==abs(i-fila))
+            return false;
+    return true;
+}
+
+void resolver(vector<int>& tab,int fila,int N){
+    if(fila==N){
+        for(int c:tab) cout<<c<<" ";
+        cout<<endl; return;
+    }
+    for(int col=0;col<N;col++){
+        if(esSeguro(tab,fila,col)){
+            tab[fila]=col;
+            resolver(tab,fila+1,N);
+        }
+    }
+}
+
+int main(){
+    int N=4;
+    vector<int> tablero(N);
+    resolver(tablero,0,N);
+    return 0;
+}

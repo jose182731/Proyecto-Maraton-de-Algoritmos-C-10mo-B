@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo{
+    int valor;
+    Nodo* izq;
+    Nodo* der;
+};
+
+Nodo* insertar(Nodo* raiz, int val){
+    if(!raiz) return new Nodo{val,nullptr,nullptr};
+    if(val < raiz->valor) raiz->izq = insertar(raiz->izq,val);
+    else raiz->der = insertar(raiz->der,val);
+    return raiz;
+}
+
+void inorder(Nodo* raiz){
+    if(!raiz) return;
+    inorder(raiz->izq);
+    cout << raiz->valor << " ";
+    inorder(raiz->der);
+}
+
+int main(){
+    Nodo* raiz = nullptr;
+    raiz = insertar(raiz,10);
+    raiz = insertar(raiz,5);
+    raiz = insertar(raiz,15);
+    inorder(raiz);
+    return 0;
+}

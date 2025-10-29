@@ -1,0 +1,21 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Oferta {
+    string usuario; double monto;
+    bool operator<(const Oferta &o) const { return monto < o.monto; }
+};
+
+int main(){
+    priority_queue<Oferta> subasta;
+    subasta.push({"Ana",150});
+    subasta.push({"Luis",200});
+    subasta.push({"Marta",180});
+
+    while(!subasta.empty()){
+        auto o=subasta.top(); subasta.pop();
+        cout<<o.usuario<<" ofertó $"<<o.monto<<endl;
+    }
+    return 0;
+}

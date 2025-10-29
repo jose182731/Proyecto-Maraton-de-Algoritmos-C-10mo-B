@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato; Nodo *izq,*der;
+    Nodo(int d):dato(d),izq(NULL),der(NULL){}
+};
+
+Nodo* insertar(Nodo* raiz,int val){
+    if(!raiz) return new Nodo(val);
+    if(val<raiz->dato) raiz->izq=insertar(raiz->izq,val);
+    else raiz->der=insertar(raiz->der,val);
+    return raiz;
+}
+
+void preOrden(Nodo* raiz){
+    if(!raiz) return;
+    cout<<raiz->dato<<" ";
+    preOrden(raiz->izq);
+    preOrden(raiz->der);
+}
+
+int main(){
+    Nodo* raiz=NULL;
+    int datos[]={50,30,70,20,40,60,80};
+    for(int d:datos) raiz=insertar(raiz,d);
+
+    cout<<"Preorden: ";
+    preOrden(raiz);
+    return 0;
+}

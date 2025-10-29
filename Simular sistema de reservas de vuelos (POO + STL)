@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Vuelo {
+public:
+    string codigo;
+    int asientos;
+    Vuelo(string c, int a): codigo(c), asientos(a){}
+};
+
+int main(){
+    vector<Vuelo> vuelos = {{"EC101",50},{"EC202",80},{"EC303",60}};
+    string buscar;
+    cout << "Ingrese código de vuelo: ";
+    cin >> buscar;
+    auto it = find_if(vuelos.begin(), vuelos.end(), [&](Vuelo v){return v.codigo==buscar;});
+    if(it != vuelos.end()) cout << "Vuelo " << it->codigo << " tiene " << it->asientos << " asientos.\n";
+    else cout << "Vuelo no encontrado.\n";
+    return 0;
+}

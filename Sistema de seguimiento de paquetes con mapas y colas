@@ -1,0 +1,22 @@
+#include <iostream>
+#include <map>
+#include <queue>
+#include <string>
+using namespace std;
+
+int main() {
+    map<string, queue<string>> paquetes;
+    paquetes["Ana"].push("Enviado");
+    paquetes["Ana"].push("En tránsito");
+    paquetes["Luis"].push("Enviado");
+
+    for(auto &p:paquetes){
+        cout<<p.first<<": ";
+        while(!p.second.empty()){
+            cout<<p.second.front()<<" -> ";
+            p.second.pop();
+        }
+        cout<<"Finalizado\n";
+    }
+    return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo *izq, *der;
+    Nodo(int d):dato(d),izq(NULL),der(NULL){}
+};
+
+Nodo* insertar(Nodo* raiz, int valor){
+    if(!raiz) return new Nodo(valor);
+    if(valor<raiz->dato) raiz->izq=insertar(raiz->izq,valor);
+    else raiz->der=insertar(raiz->der,valor);
+    return raiz;
+}
+
+void inOrden(Nodo* raiz){
+    if(!raiz) return;
+    inOrden(raiz->izq);
+    cout<<raiz->dato<<" ";
+    inOrden(raiz->der);
+}
+
+int main(){
+    Nodo* raiz=NULL;
+    int datos[]={8,3,10,1,6,14,4,7,13};
+    for(int d:datos) raiz=insertar(raiz,d);
+    cout<<"Recorrido InOrden: "; inOrden(raiz);
+    return 0;
+}

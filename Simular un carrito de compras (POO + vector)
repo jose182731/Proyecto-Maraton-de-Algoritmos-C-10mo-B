@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Producto {
+public:
+    string nombre;
+    double precio;
+    Producto(string n,double p):nombre(n),precio(p){}
+};
+
+class Carrito {
+    vector<Producto> items;
+public:
+    void agregar(Producto p){ items.push_back(p); }
+    void mostrar(){
+        double total=0;
+        for(auto &i:items){ cout<<i.nombre<<" - $"<<i.precio<<endl; total+=i.precio; }
+        cout<<"Total: $"<<total<<endl;
+    }
+};
+
+int main(){
+    Carrito c;
+    c.agregar({"Laptop",900});
+    c.agregar({"Mouse",20});
+    c.mostrar();
+    return 0;
+}

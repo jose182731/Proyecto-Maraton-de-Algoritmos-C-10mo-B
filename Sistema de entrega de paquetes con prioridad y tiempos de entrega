@@ -1,0 +1,26 @@
+#include <iostream>
+#include <queue>
+#include <thread>
+#include <chrono>
+using namespace std;
+
+struct Paquete { int id, prioridad, duracion; string destino; bool operator<(const Paquete &p) const { return prioridad<p.prioridad; } };
+
+void entregar(Paquete p){
+    cout<<"Entregando paquete "<<p.id<<" a "<<p.destino<<" (Prioridad "<<p.prioridad<<")\n";
+    this_thread::sleep_for(chrono::seconds(p.duracion));
+    cout<<"Paquete "<<p.id<<" entregado\n";
+}
+
+int main(){
+    priority_queue<Paquete> cola;
+    cola.push({1,3,4,"Ciudad A"});
+    cola.push({2,1,2,"Ciudad B"});
+    cola.push({3,2,3,"Ciudad C"});
+
+    while(!cola.empty()){
+        Paquete p = cola.top(); cola.pop();
+        entregar(p);
+    }
+    return 0;
+}

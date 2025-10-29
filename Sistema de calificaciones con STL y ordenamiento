@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Alumno {
+    string nombre;
+    double nota;
+};
+
+bool cmp(const Alumno &a, const Alumno &b){ return a.nota>b.nota; }
+
+int main(){
+    vector<Alumno> lista={{"Ana",85},{"Luis",92},{"Carlos",78}};
+    sort(lista.begin(), lista.end(), cmp);
+
+    for(auto &a:lista)
+        cout<<a.nombre<<" -> "<<a.nota<<endl;
+    return 0;
+}

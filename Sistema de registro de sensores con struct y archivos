@@ -1,0 +1,19 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+struct Sensor {
+    string nombre;
+    double valor;
+};
+
+int main(){
+    vector<Sensor> sensores={{"Temperatura",22.5},{"Humedad",55.2},{"Presión",1013.9}};
+    ofstream archivo("sensores.txt");
+    for(auto &s:sensores)
+        archivo<<s.nombre<<"="<<s.valor<<endl;
+    archivo.close();
+    cout<<"Datos guardados en 'sensores.txt'\n";
+    return 0;
+}

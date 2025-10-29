@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo *ant, *sig;
+    Nodo(int d):dato(d),ant(NULL),sig(NULL){}
+};
+
+class ListaDoble {
+    Nodo* cabeza;
+public:
+    ListaDoble():cabeza(NULL){}
+    void insertar(int d){
+        Nodo* nuevo=new Nodo(d);
+        nuevo->sig=cabeza;
+        if(cabeza) cabeza->ant=nuevo;
+        cabeza=nuevo;
+    }
+    void mostrar(){
+        Nodo* temp=cabeza;
+        while(temp){
+            cout<<temp->dato<<" ";
+            temp=temp->sig;
+        }
+    }
+};
+
+int main(){
+    ListaDoble lista;
+    lista.insertar(5);
+    lista.insertar(10);
+    lista.insertar(15);
+    lista.mostrar();
+    return 0;
+}

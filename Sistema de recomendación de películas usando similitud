@@ -1,0 +1,19 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <string>
+using namespace std;
+
+double similitud(vector<int>& u1, vector<int>& u2){
+    double sum=0;
+    for(size_t i=0;i<u1.size();i++)
+        sum += (u1[i]-u2[i])*(u1[i]-u2[i]);
+    return sqrt(sum);
+}
+
+int main(){
+    vector<int> usuario1 = {5,4,0,3,2};
+    vector<int> usuario2 = {5,3,4,3,1};
+    cout<<"Distancia de similitud entre usuarios: "<<similitud(usuario1,usuario2)<<endl;
+    return 0;
+}

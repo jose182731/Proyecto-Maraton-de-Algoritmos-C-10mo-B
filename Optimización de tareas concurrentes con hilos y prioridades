@@ -1,0 +1,19 @@
+#include <iostream>
+#include <thread>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+using namespace std;
+
+struct Tarea { string nombre; int duracion; int prioridad; };
+void ejecutar(Tarea t){ cout<<"Ejecutando "<<t.nombre<<" (Prioridad "<<t.prioridad<<")\n"; this_thread::sleep_for(chrono::seconds(t.duracion)); }
+
+int main(){
+    vector<Tarea> tareas={{"Descarga",3,2},{"Procesamiento",5,3},{"Backup",2,1}};
+    sort(tareas.begin(),tareas.end(),[](Tarea a,Tarea b){ return a.prioridad>b.prioridad; });
+    vector<thread> hilos;
+    for(auto &t:tareas) hilos.push_back(thread(ejecutar,t));
+    for(auto &h:hilos) h.join();
+    cout<<"Todas las tareas finalizadas\n";
+    return 0;
+}

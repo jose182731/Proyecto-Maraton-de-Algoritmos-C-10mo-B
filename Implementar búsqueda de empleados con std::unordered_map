@@ -1,0 +1,19 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main(){
+    unordered_map<int,string> empleados;
+    empleados[101] = "Carlos";
+    empleados[102] = "Marta";
+    empleados[103] = "Luis";
+
+    int id;
+    cout << "Ingrese ID de empleado: ";
+    cin >> id;
+    if(empleados.find(id) != empleados.end())
+        cout << "Empleado encontrado: " << empleados[id] << endl;
+    else
+        cout << "ID no existe.\n";
+    return 0;
+}

@@ -1,0 +1,19 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int busquedaBinaria(vector<int>& arr, int l, int r, int x){
+    if(l > r) return -1;
+    int m = (l+r)/2;
+    if(arr[m]==x) return m;
+    if(arr[m] > x) return busquedaBinaria(arr,l,m-1,x);
+    return busquedaBinaria(arr,m+1,r,x);
+}
+
+int main(){
+    vector<int> arr={1,3,5,7,9,11};
+    int x=7;
+    int pos = busquedaBinaria(arr,0,arr.size()-1,x);
+    cout << "Elemento encontrado en índice: " << pos << endl;
+    return 0;
+}

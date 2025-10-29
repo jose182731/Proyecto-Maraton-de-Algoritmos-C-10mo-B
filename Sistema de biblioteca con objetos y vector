@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Libro{
+    string titulo, autor;
+    bool prestado;
+public:
+    Libro(string t,string a):titulo(t),autor(a),prestado(false){}
+    void prestar(){ prestado=true; }
+    void devolver(){ prestado=false; }
+    void mostrar(){ cout<<titulo<<" - "<<autor<<" ("<<(prestado?"Prestado":"Disponible")<<")\n"; }
+};
+
+int main(){
+    vector<Libro> biblioteca={{"1984","George Orwell"},{"El Principito","Saint-Exupéry"}};
+    biblioteca[0].prestar();
+    for(auto &l:biblioteca) l.mostrar();
+    return 0;
+}

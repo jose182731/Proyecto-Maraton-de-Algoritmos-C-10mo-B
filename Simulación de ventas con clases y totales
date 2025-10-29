@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Venta {
+    string producto;
+    int cantidad;
+    double precio;
+public:
+    Venta(string p,int c,double pr):producto(p),cantidad(c),precio(pr){}
+    double total(){ return cantidad*precio; }
+    void mostrar(){ cout<<producto<<" x"<<cantidad<<" = "<<total()<<endl; }
+};
+
+int main(){
+    vector<Venta> ventas={{"Laptop",2,800},{"Mouse",5,15},{"Teclado",3,25}};
+    double total=0;
+    for(auto &v:ventas){ v.mostrar(); total+=v.total(); }
+    cout<<"Total ventas: "<<total<<endl;
+    return 0;
+}

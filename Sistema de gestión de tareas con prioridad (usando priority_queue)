@@ -1,0 +1,22 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Tarea {
+    string nombre;
+    int prioridad;
+    bool operator<(const Tarea& otra) const { return prioridad < otra.prioridad; }
+};
+
+int main(){
+    priority_queue<Tarea> tareas;
+    tareas.push({"Entregar informe",3});
+    tareas.push({"Hacer copias",1});
+    tareas.push({"Revisar correo",2});
+
+    while(!tareas.empty()){
+        cout<<"Tarea: "<<tareas.top().nombre<<" | Prioridad: "<<tareas.top().prioridad<<endl;
+        tareas.pop();
+    }
+    return 0;
+}

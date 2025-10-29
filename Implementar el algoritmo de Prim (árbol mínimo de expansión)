@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int minimo(vector<int>& key, vector<bool>& mst, int V){
+    int min=INT_MAX, idx=-1;
+    for(int v=0;v<V;v++)
+        if(!mst[v] && key[v]<min)
+            min=key[v], idx=v;
+    return idx;
+}
+
+void prim(vector<vector<int>>& grafo, int V){
+    vector<int> padre(V,-1), key(V,INT_MAX);
+    vector<bool> mst(V,false);
+    key[0]=0;
+
+    for(int c=0;c<V-1;c++){
+        int u=minimo(key,mst,V);
+        mst[u]=true;
+        for(int v=0;v<V;v++)
+            if(grafo[u][v] && !mst[v] && grafo[u][v]<key[v])
+                padre[v]=u, key[v]=grafo[u][v];
+    }
+
+    cout<<"Aristas del árbol mínimo:\n";
+    for(int i=1;i<V;i++)
+        cout<<padre[i]<<" - "<<i<<" : "<<grafo[i][padre[i]]<<endl;
+}
+
+int main(){
+    vector<vector<int>> grafo={
+        {0,2,0,6,0},
+        {2,0,3,8,5},
+        {0,3,0,0,7},
+        {6,8,0,0,9},
+        {0,5,7,9,0}
+    };
+    prim(grafo,5);
+    return 0;
+}

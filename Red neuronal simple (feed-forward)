@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+double sigmoid(double x){ return 1.0/(1.0+exp(-x)); }
+int main(){
+    vector<double> input={0.5,0.9};
+    vector<vector<double>> w1={{0.3,0.8},{0.2,0.5}};
+    vector<double> b1={0.1,0.2};
+    vector<double> hidden(2);
+    for(int i=0;i<2;i++)
+        hidden[i]=sigmoid(input[0]*w1[0][i]+input[1]*w1[1][i]+b1[i]);
+    vector<double> w2={0.6,0.9};
+    double b2=0.3;
+    double output=sigmoid(hidden[0]*w2[0]+hidden[1]*w2[1]+b2);
+    cout<<"Salida de la red: "<<output<<"\n";
+    return 0;
+}

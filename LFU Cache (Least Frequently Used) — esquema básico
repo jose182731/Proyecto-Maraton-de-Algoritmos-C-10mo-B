@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+class LFU {
+    int cap;
+    unordered_map<int,int> val;
+    unordered_map<int,int> freq;
+    map<int, list<int>> buckets; // freq -> keys (oldest first)
+    unordered_map<int, list<int>::iterator> iters;
+public:
+    LFU(int c):cap(c){}
+    int get(int k){
+        if(!val.count(k)) return -1;
+        touch(k);
+        return val[k];
+    }
+    void put(int k,int v){
+        if(cap==0) return;
+        if(val.count(k)){ val[k]=v; touch(k); return; }
+        if(val.size()==cap){
+            auto &lst = buckets.begin()->second;
+            int ev = lst.back(); lst.pop_back();
+            if(lst.empty()) buckets.erase(buckets.begin());
+            val.erase(ev); freq.erase(ev); iters.erase(ev);
+        }
+        val[k]=v; freq[k]=1;
+        buckets[1].push_front(k); iters[k]=buckets[1].begin();
+    }
+    void touch(int k){
+        int f=freq[k];
+        auto it=iters[k];
+        buckets[f].erase(it);
+        if(buckets[f].empty()) buckets.erase(f);
+        freq[k]=f+1;
+        buckets[f+1].push_front(k);
+        iters[k]=buckets[f+1].begin();
+    }
+};
+int main(){
+    LFU cache(2);
+    cache.put(1,10); cache.put(2,20);
+    cout<<cache.get(1)<<"\n"; // 10
+    cache.put(3,30); // evict key 2 (least freq)
+    cout<<cache.get(2)<<"\n"; // -1
+    return 0;
+}

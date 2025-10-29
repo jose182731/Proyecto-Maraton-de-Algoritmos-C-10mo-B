@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class Persona {
+protected:
+    string nombre;
+public:
+    Persona(string n):nombre(n){}
+};
+
+class Empleado {
+protected:
+    double salario;
+public:
+    Empleado(double s):salario(s){}
+};
+
+class Gerente : public Persona, public Empleado {
+public:
+    Gerente(string n,double s):Persona(n),Empleado(s){}
+    void mostrar(){ cout<<"Gerente: "<<nombre<<" - Salario: "<<salario<<endl; }
+};
+
+int main(){
+    Gerente g("Laura",3500);
+    g.mostrar();
+    return 0;
+}

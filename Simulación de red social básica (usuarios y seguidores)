@@ -1,0 +1,19 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string, vector<string>> seguidores;
+    seguidores["Ana"]={"Luis","Carlos"};
+    seguidores["Luis"]={"Ana"};
+    seguidores["Carlos"]={"Luis","Ana"};
+
+    for(auto &p:seguidores){
+        cout<<p.first<<" tiene "<<p.second.size()<<" seguidores: ";
+        for(auto &s:p.second) cout<<s<<" ";
+        cout<<endl;
+    }
+    return 0;
+}

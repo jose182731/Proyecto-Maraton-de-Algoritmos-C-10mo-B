@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <ctime>
+using namespace std;
+
+string hashSimple(string data){
+    unsigned int hash=0;
+    for(char c:data) hash=(hash*131 + c)%1000000007;
+    return to_string(hash);
+}
+
+struct Bloque {
+    int indice;
+    string datos, hashPrevio, hashActual;
+    time_t tiempo;
+    Bloque(int i,string d,string prev){
+        indice=i; datos=d; hashPrevio=prev;
+        tiempo=time(0);
+        stringstream ss; ss<<i<<d<<prev<<tiempo;
+        hashActual=hashSimple(ss.str());
+    }
+};
+
+int main(){
+    vector<Bloque> cadena;
+    cadena.push_back(Bloque(0,"Bloque génesis","0"));
+    cadena.push_back(Bloque(1,"Transacción: Ana paga a Luis","0"));
+    cadena.push_back(Bloque(2,"Transacción: Luis paga a Marta",cadena[1].hashActual));
+
+    for(auto &b:cadena){
+        cout<<"Bloque "<<b.indice<<" | Hash: "<<b.hashActual<<endl;
+    }
+    return 0;
+}

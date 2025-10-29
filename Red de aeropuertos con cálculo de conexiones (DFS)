@@ -1,0 +1,19 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void DFS(int nodo, vector<vector<int>>& grafo, vector<bool>& visitado){
+    visitado[nodo]=true;
+    cout<<"Aeropuerto "<<nodo<<" visitado."<<endl;
+    for(int v:grafo[nodo])
+        if(!visitado[v]) DFS(v,grafo,visitado);
+}
+
+int main(){
+    vector<vector<int>> aeropuertos = {
+        {1,2}, {0,3}, {0,3}, {1,2,4}, {3}
+    };
+    vector<bool> visitado(aeropuertos.size(),false);
+    DFS(0,aeropuertos,visitado);
+    return 0;
+}

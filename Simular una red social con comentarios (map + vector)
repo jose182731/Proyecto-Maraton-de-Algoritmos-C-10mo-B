@@ -1,0 +1,18 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string, vector<string>> comentarios;
+    comentarios["Ana"]={"Hola mundo","Buen día"};
+    comentarios["Luis"]={"C++ es genial","Aprendiendo STL"};
+
+    for(auto &u:comentarios){
+        cout<<u.first<<" publicó:\n";
+        for(auto &c:u.second)
+            cout<<"  - "<<c<<endl;
+    }
+    return 0;
+}

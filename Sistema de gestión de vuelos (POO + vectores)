@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Vuelo {
+public:
+    string codigo, destino;
+    int asientos, ocupados;
+    Vuelo(string c,string d,int a):codigo(c),destino(d),asientos(a),ocupados(0){}
+    bool reservar(int n){ if(ocupados+n>asientos) return false; ocupados+=n; return true; }
+};
+
+int main(){
+    vector<Vuelo> vuelos={{"AV101","Quito",120},{"LA202","Bogotá",100}};
+    vuelos[0].reservar(3);
+    vuelos[1].reservar(2);
+    for(auto &v:vuelos)
+        cout<<v.codigo<<" -> "<<v.destino<<" ("<<v.ocupados<<"/"<<v.asientos<<")\n";
+    return 0;
+}

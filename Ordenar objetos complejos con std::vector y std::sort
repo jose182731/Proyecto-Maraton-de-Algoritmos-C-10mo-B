@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int edad;
+};
+
+bool compararEdad(Persona a, Persona b){ return a.edad < b.edad; }
+
+int main(){
+    vector<Persona> personas = {{"Ana",25},{"Luis",30},{"Marta",22}};
+    sort(personas.begin(), personas.end(), compararEdad);
+    for(auto p: personas) cout << p.nombre << " | " << p.edad << endl;
+    return 0;
+}

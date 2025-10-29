@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Vehiculo {
+public:
+    string placa;
+    Vehiculo(string p):placa(p){}
+};
+
+class Parqueadero {
+    vector<Vehiculo> lugares;
+    int capacidad;
+public:
+    Parqueadero(int c):capacidad(c){}
+    void ingresar(Vehiculo v){
+        if(lugares.size()<capacidad){
+            lugares.push_back(v);
+            cout<<"Vehículo "<<v.placa<<" ingresó."<<endl;
+        } else cout<<"Parqueadero lleno."<<endl;
+    }
+    void mostrar(){
+        cout<<"Vehículos estacionados:\n";
+        for(auto &v:lugares) cout<<v.placa<<endl;
+    }
+};
+
+int main(){
+    Parqueadero p(3);
+    p.ingresar({"ABC-123"});
+    p.ingresar({"XYZ-789"});
+    p.mostrar();
+    return 0;
+}

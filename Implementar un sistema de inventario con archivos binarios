@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
+
+struct Producto {
+    int id;
+    char nombre[30];
+    double precio;
+};
+
+int main(){
+    ofstream out("inventario.dat", ios::binary);
+    Producto p1={1,"Laptop",950.5}, p2={2,"Mouse",15.75};
+    out.write((char*)&p1,sizeof(p1));
+    out.write((char*)&p2,sizeof(p2));
+    out.close();
+
+    ifstream in("inventario.dat", ios::binary);
+    Producto temp;
+    cout<<"Inventario:\n";
+    while(in.read((char*)&temp,sizeof(temp))){
+        cout<<temp.id<<" - "<<temp.nombre<<" - $"<<temp.precio<<endl;
+    }
+    in.close();
+    return 0;
+}

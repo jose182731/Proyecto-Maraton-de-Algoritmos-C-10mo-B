@@ -1,0 +1,19 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+int main(){
+    map<string, vector<int>> notas;
+    notas["Carlos"]={90,80,85};
+    notas["Ana"]={70,75,78};
+    notas["Luis"]={88,92,85};
+
+    for(auto &n:notas){
+        double prom=0;
+        for(int v:n.second) prom+=v;
+        prom/=n.second.size();
+        cout<<n.first<<" -> Promedio: "<<prom<<endl;
+    }
+    return 0;
+}

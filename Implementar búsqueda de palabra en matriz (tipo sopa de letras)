@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool buscarPalabra(vector<vector<char>>& mat, string palabra, int i, int j, int idx){
+    if(idx==palabra.size()) return true;
+    if(i<0||j<0||i>=mat.size()||j>=mat[0].size()||mat[i][j]!=palabra[idx]) return false;
+    char temp = mat[i][j];
+    mat[i][j] = '#';
+    bool encontrado = buscarPalabra(mat,palabra,i+1,j,idx+1)||
+                      buscarPalabra(mat,palabra,i-1,j,idx+1)||
+                      buscarPalabra(mat,palabra,i,j+1,idx+1)||
+                      buscarPalabra(mat,palabra,i,j-1,idx+1);
+    mat[i][j]=temp;
+    return encontrado;
+}
+
+int main(){
+    vector<vector<char>> matriz = {
+        {'C','A','S','A'},
+        {'R','A','T','O'},
+        {'P','E','R','O'}
+    };
+    string palabra="RATO";
+    bool hallada=false;
+    for(int i=0;i<matriz.size();i++)
+        for(int j=0;j<matriz[0].size();j++)
+            if(buscarPalabra(matriz,palabra,i,j,0)) hallada=true;
+    cout << (hallada? "Palabra encontrada" : "No encontrada") << endl;
+    return 0;
+}

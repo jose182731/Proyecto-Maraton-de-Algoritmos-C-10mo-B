@@ -1,0 +1,17 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main(){
+    stack<string> historial;
+    historial.push("Inicio");
+    historial.push("Noticias");
+    historial.push("Deportes");
+
+    cout<<"Página actual: "<<historial.top()<<endl;
+    historial.pop();
+    cout<<"Retrocediendo...\n";
+    cout<<"Ahora estás en: "<<historial.top()<<endl;
+    return 0;
+}

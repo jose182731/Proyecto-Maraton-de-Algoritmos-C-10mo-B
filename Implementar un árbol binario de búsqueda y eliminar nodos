@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo *izq, *der;
+    Nodo(int d):dato(d),izq(NULL),der(NULL){}
+};
+
+Nodo* insertar(Nodo* raiz,int val){
+    if(!raiz) return new Nodo(val);
+    if(val<raiz->dato) raiz->izq=insertar(raiz->izq,val);
+    else raiz->der=insertar(raiz->der,val);
+    return raiz;
+}
+
+Nodo* minimo(Nodo* raiz){
+    while(raiz->izq) raiz=raiz->izq;
+    return raiz;
+}
+
+Nodo* eliminar(Nodo* raiz,int val){
+    if(!raiz) return raiz;
+    if(val<raiz->dato) raiz->izq=eliminar(raiz->izq,val);
+    else if(val>raiz->dato) raiz->der=eliminar(raiz->der,val);
+    else{
+        if(!raiz->izq) return raiz->der;
+        else if(!raiz->der) return raiz->izq;
+        Nodo* temp=minimo(raiz->der);
+        raiz->dato=temp->dato;
+        raiz->der=eliminar(raiz->der,temp->dato);
+    }
+    return raiz;
+}
+
+void inOrden(Nodo* raiz){
+    if(!raiz) return;
+    inOrden(raiz->izq);
+    cout<<raiz->dato<<" ";
+    inOrden(raiz->der);
+}
+
+int main(){
+    Nodo* raiz=NULL;
+    int datos[]={50,30,70,20,40,60,80};
+    for(int d:datos) raiz=insertar(raiz,d);
+
+    cout<<"Árbol original: "; inOrden(raiz);
+    cout<<"\nEliminar 20...\n";
+    raiz=eliminar(raiz,20);
+    inOrden(raiz);
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+void BFS(vector<vector<int>>& grafo, int inicio){
+    vector<bool> visitado(grafo.size(),false);
+    queue<int> q;
+    q.push(inicio);
+    visitado[inicio]=true;
+
+    while(!q.empty()){
+        int nodo=q.front(); q.pop();
+        cout<<nodo<<" ";
+        for(int vecino:grafo[nodo]){
+            if(!visitado[vecino]){
+                visitado[vecino]=true;
+                q.push(vecino);
+            }
+        }
+    }
+}
+
+int main(){
+    vector<vector<int>> grafo={{1,2},{0,3,4},{0,4},{1,4},{1,2,3}};
+    cout<<"Recorrido BFS desde 0: ";
+    BFS(grafo,0);
+    return 0;
+}

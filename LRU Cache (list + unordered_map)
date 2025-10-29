@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+class LRU {
+    int cap;
+    list<pair<int,int>> lst; // {key,val}
+    unordered_map<int, list<pair<int,int>>::iterator> mp;
+public:
+    LRU(int c):cap(c){}
+    int get(int k){
+        if(!mp.count(k)) return -1;
+        auto it = mp[k];
+        int val = it->second;
+        lst.splice(lst.begin(), lst, it);
+        mp[k] = lst.begin();
+        return val;
+    }
+    void put(int k,int v){
+        if(mp.count(k)){ auto it=mp[k]; it->second=v; lst.splice(lst.begin(), lst, it); mp[k]=lst.begin(); return; }
+        if(lst.size()==cap){ auto bk=lst.back().first; mp.erase(bk); lst.pop_back(); }
+        lst.emplace_front(k,v); mp[k]=lst.begin();
+    }
+};
+int main(){
+    LRU cache(2);
+    cache.put(1,10); cache.put(2,20);
+    cout<<cache.get(1)<<"\n"; // 10
+    cache.put(3,30); // evict 2
+    cout<<cache.get(2)<<"\n"; // -1
+    return 0;
+}

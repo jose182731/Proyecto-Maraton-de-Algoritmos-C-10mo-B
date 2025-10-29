@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+double cosSim(vector<int> a, vector<int> b){
+    double dot=0,na=0,nb=0;
+    for(size_t i=0;i<a.size();i++){ dot+=a[i]*b[i]; na+=a[i]*a[i]; nb+=b[i]*b[i]; }
+    return dot/(sqrt(na)*sqrt(nb));
+}
+int main(){
+    vector<int> u1={5,3,0,1}, u2={4,0,0,1}, u3={1,1,0,5};
+    cout<<"Sim(u1,u2)="<<cosSim(u1,u2)<<"\n";
+    cout<<"Sim(u1,u3)="<<cosSim(u1,u3)<<"\n";
+    return 0;
+}

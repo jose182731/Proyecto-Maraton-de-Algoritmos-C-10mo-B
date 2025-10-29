@@ -1,0 +1,18 @@
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string, vector<string>> amigos;
+    amigos["Ana"]={"Luis","Marta"};
+    amigos["Luis"]={"Ana","Carlos"};
+    amigos["Marta"]={"Ana"};
+
+    string nombre="Ana";
+    cout<<"Amigos de "<<nombre<<": ";
+    for(string a:amigos[nombre]) cout<<a<<" ";
+    cout<<endl;
+    return 0;
+}

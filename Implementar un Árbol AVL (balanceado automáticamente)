@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+struct Nodo {
+    int dato, altura;
+    Nodo *izq, *der;
+    Nodo(int d):dato(d),altura(1),izq(NULL),der(NULL){}
+};
+
+int altura(Nodo* n){ return n? n->altura:0; }
+int balance(Nodo* n){ return n? altura(n->izq)-altura(n->der):0; }
+
+Nodo* rotDer(Nodo* y){
+    Nodo* x=y->izq; Nodo* T2=x->der;
+    x->der=y; y->izq=T2;
+    y->altura=max(altura(y->izq),altura(y->der))+1;
+    x->altura=max(altura(x->izq),altura(x->der))+1;
+    return x;
+}
+
+Nodo* rotIzq(Nodo* x){
+    Nodo* y=x->der; Nodo* T2=y->izq;
+    y->izq=x; x->der=T2;
+    x->altura=max(altura(x->izq),altura(x->der))+1;
+    y->altura=max(altura(y->izq),altura(y->der))+1;
+    return y;
+}
+
+Nodo* insertar(Nodo* n,int val){
+    if(!n) return new Nodo(val);
+    if(val<n->dato) n->izq=insertar(n->izq,val);
+    else if(val>n->dato) n->der=insertar(n->der,val);
+    else return n;
+
+    n->altura=1+max(altura(n->izq),altura(n->der));
+    int bal=balance(n);
+    if(bal>1 && val<n->izq->dato) return rotDer(n);
+    if(bal<-1 && val>n->der->dato) return rotIzq(n);
+    if(bal>1 && val>n->izq->dato){ n->izq=rotIzq(n->izq); return rotDer(n); }
+    if(bal<-1 && val<n->der->dato){ n->der=rotDer(n->der); return rotIzq(n); }
+    return n;
+}
+
+void inOrden(Nodo* r){
+    if(!r) return;
+    inOrden(r->izq);
+    cout<<r->dato<<" ";
+    inOrden(r->der);
+}
+
+int main(){
+    Nodo* raiz=NULL;
+    int valores[]={10,20,30,40,50,25};
+    for(int v:valores) raiz=insertar(raiz,v);
+    cout<<"Árbol AVL (InOrden): "; inOrden(raiz);
+    return 0;
+}

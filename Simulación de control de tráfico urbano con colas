@@ -1,0 +1,21 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+int main(){
+    queue<string> autos;
+    autos.push("Auto1");
+    autos.push("Auto2");
+    autos.push("Auto3");
+
+    int semaforo=1; // 1 = verde
+    while(!autos.empty()){
+        if(semaforo){
+            cout<<autos.front()<<" pasa el cruce.\n";
+            autos.pop();
+        }else cout<<"Semáforo en rojo. Esperando...\n";
+        semaforo=!semaforo;
+    }
+    return 0;
+}

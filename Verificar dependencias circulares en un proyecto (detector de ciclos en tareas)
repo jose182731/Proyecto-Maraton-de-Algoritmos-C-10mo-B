@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <map>
+using namespace std;
+
+// Función recursiva para detectar ciclos (dependencias circulares)
+bool dfs(string tarea, map<string, vector<string>>& deps, map<string, bool>& vis, map<string, bool>& pila){
+    vis[tarea] = true;
+    pila[tarea] = true;
+
+    for(auto &dep : deps[tarea]){
+        if(!vis[dep] && dfs(dep, deps, vis, pila)) return true;
+        else if(pila[dep]) return true;
+    }
+
+    pila[tarea] = false;
+    return false;
+}
+
+int main(){
+    map<string, vector<string>> deps;
+    deps["Compilar"] = {"DescargarDependencias"};
+    deps["DescargarDependencias"] = {"VerificarInternet"};
+    deps["VerificarInternet"] = {};
+    deps["Empaquetar"] = {"Compilar"};
+    deps["Subir"] = {"Empaquetar"};
+    // Dependencia circular intencional:
+    deps["VerificarInternet"].push_back("Subir");
+
+    map<string, bool> vis, pila;
+    bool ciclo = false;
+
+    for(auto &t : deps)
+        if(!vis[t.first] && dfs(t.first, deps, vis, pila))
+            ciclo = true;
+
+    if(ciclo)
+        cout<<"⚠️  Se detectaron dependencias circulares entre tareas.\n";
+    else
+        cout<<"✅  No hay dependencias circulares.\n";
+
+    return 0;
+}

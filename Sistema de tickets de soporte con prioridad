@@ -1,0 +1,22 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Ticket {
+    int id, prioridad;
+    string descripcion;
+    bool operator<(const Ticket& t) const { return prioridad < t.prioridad; }
+};
+
+int main(){
+    priority_queue<Ticket> soporte;
+    soporte.push({1,3,"Error de conexión"});
+    soporte.push({2,1,"Reinicio"});
+    soporte.push({3,2,"Problema de red"});
+
+    while(!soporte.empty()){
+        auto t=soporte.top(); soporte.pop();
+        cout<<"Atendiendo Ticket "<<t.id<<" - "<<t.descripcion<<" (Prioridad "<<t.prioridad<<")\n";
+    }
+    return 0;
+}

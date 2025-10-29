@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct Edge{int u,v,w;};
+int main(){
+    int n=5;
+    vector<Edge> edges={{0,1,6},{0,2,7},{1,2,8},{1,3,5},{1,4,-4},{2,3,-3},{2,4,9},{3,1,-2},{4,3,7},{4,0,2}};
+    const int INF = 1e9;
+    vector<int> dist(n, INF); dist[0]=0;
+    for(int i=0;i<n-1;i++){
+        for(auto &e:edges)
+            if(dist[e.u]!=INF && dist[e.u]+e.w < dist[e.v])
+                dist[e.v]=dist[e.u]+e.w;
+    }
+    bool negCycle=false;
+    for(auto &e:edges)
+        if(dist[e.u]!=INF && dist[e.u]+e.w < dist[e.v]) negCycle=true;
+    cout<<"Distancias desde 0:\n"; for(int i=0;i<n;i++) cout<<i<<": "<<(dist[i]==INF? -1:dist[i])<<"\n";
+    cout<<(negCycle? "¡Ciclo negativo detectado!\n":"No hay ciclo negativo.\n");
+    return 0;
+}

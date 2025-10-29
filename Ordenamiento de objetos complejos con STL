@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Producto {
+    string nombre;
+    double precio;
+    bool operator<(const Producto& p) const { return precio < p.precio; }
+};
+
+int main() {
+    vector<Producto> lista={{"Mouse",15},{"Teclado",25},{"Monitor",120},{"USB",10}};
+    sort(lista.begin(), lista.end());
+
+    for(auto &p:lista) cout<<p.nombre<<" -> $"<<p.precio<<endl;
+    return 0;
+}

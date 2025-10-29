@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Usuario {
+    string nombre;
+    vector<Usuario*> amigos;
+public:
+    Usuario(string n):nombre(n){}
+    void agregarAmigo(Usuario* u){ amigos.push_back(u); }
+    void mostrarAmigos(){
+        cout<<nombre<<" tiene amigos: ";
+        for(auto a:amigos) cout<<a->nombre<<" ";
+        cout<<"\n";
+    }
+};
+
+int main(){
+    Usuario a("Ana"), b("Luis"), c("Marta");
+    a.agregarAmigo(&b);
+    a.agregarAmigo(&c);
+    a.mostrarAmigos();
+    return 0;
+}

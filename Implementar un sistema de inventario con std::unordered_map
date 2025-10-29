@@ -1,0 +1,17 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main(){
+    unordered_map<string,int> inventario;
+    inventario["Manzanas"]=50;
+    inventario["Peras"]=30;
+    inventario["Plátanos"]=25;
+
+    string producto="Peras";
+    cout<<producto<<" en stock: "<<inventario[producto]<<endl;
+
+    inventario["Peras"]-=5;
+    cout<<"Stock actualizado de "<<producto<<": "<<inventario["Peras"]<<endl;
+    return 0;
+}

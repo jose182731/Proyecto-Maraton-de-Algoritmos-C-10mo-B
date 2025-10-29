@@ -1,0 +1,22 @@
+#include <iostream>
+#include <thread>
+#include <mutex>
+using namespace std;
+
+mutex mtx;
+double saldo = 1000;
+
+void deposito(double monto){
+    mtx.lock();
+    saldo += monto;
+    cout<<"Depósito de $"<<monto<<" -> Saldo: $"<<saldo<<endl;
+    mtx.unlock();
+}
+
+int main(){
+    thread t1(deposito,500);
+    thread t2(deposito,300);
+    t1.join();
+    t2.join();
+    return 0;
+}

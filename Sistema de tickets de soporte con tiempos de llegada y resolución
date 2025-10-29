@@ -1,0 +1,34 @@
+#include <iostream>
+#include <queue>
+#include <chrono>
+#include <thread>
+using namespace std;
+
+struct Ticket {
+    int id, prioridad;       // mayor prioridad = más urgente
+    string descripcion;
+    int duracion;            // tiempo estimado en segundos para resolver
+    bool operator<(const Ticket &t) const { return prioridad < t.prioridad; }
+};
+
+void procesarTicket(Ticket t) {
+    cout << "Atendiendo Ticket " << t.id << ": " << t.descripcion 
+         << " (Prioridad " << t.prioridad << ")\n";
+    this_thread::sleep_for(chrono::seconds(t.duracion));
+    cout << "Ticket " << t.id << " completado en " << t.duracion << " s\n";
+}
+
+int main() {
+    priority_queue<Ticket> cola;
+    cola.push({1,3,"Error de conexión",4});
+    cola.push({2,1,"Reinicio del sistema",2});
+    cola.push({3,2,"Problema de red",3});
+
+    while(!cola.empty()){
+        auto t = cola.top(); cola.pop();
+        procesarTicket(t);
+    }
+
+    cout << "Todos los tickets han sido procesados.\n";
+    return 0;
+}

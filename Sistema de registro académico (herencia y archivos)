@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Persona {
+protected:
+    string nombre;
+public:
+    Persona(string n):nombre(n){}
+    virtual void mostrar()=0;
+};
+
+class Estudiante: public Persona {
+    double promedio;
+public:
+    Estudiante(string n,double p):Persona(n),promedio(p){}
+    void mostrar() override {
+        cout<<nombre<<" - Promedio: "<<promedio<<"\n";
+    }
+};
+
+int main(){
+    vector<Estudiante> est={{"Ana",9.2},{"Luis",8.5}};
+    ofstream out("estudiantes.txt");
+    for(auto &e:est){ e.mostrar(); out<<e.nombre<<" "<<e.promedio<<"\n"; }
+    out.close();
+    return 0;
+}

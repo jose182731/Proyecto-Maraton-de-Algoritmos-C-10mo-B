@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Hotel {
+    map<int,bool> habitaciones;
+public:
+    Hotel(){ for(int i=101;i<=105;i++) habitaciones[i]=false; }
+    void reservar(int h){
+        if(habitaciones[h]) cout<<"Habitación "<<h<<" ya ocupada\n";
+        else{ habitaciones[h]=true; cout<<"Reservada "<<h<<"\n"; }
+    }
+    void mostrar(){
+        for(auto &p:habitaciones)
+            cout<<p.first<<" - "<<(p.second?"Ocupada":"Libre")<<"\n";
+    }
+};
+
+int main(){
+    Hotel h;
+    h.reservar(102);
+    h.reservar(103);
+    h.mostrar();
+    return 0;
+}

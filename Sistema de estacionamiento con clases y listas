@@ -1,0 +1,24 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+class Vehiculo {
+    string placa;
+public:
+    Vehiculo(string p):placa(p){}
+    string getPlaca() const { return placa; }
+};
+
+int main(){
+    list<Vehiculo> estacionamiento;
+    estacionamiento.push_back(Vehiculo("ABC123"));
+    estacionamiento.push_back(Vehiculo("XYZ789"));
+
+    cout<<"Vehículos en estacionamiento:\n";
+    for(auto &v:estacionamiento) cout<<" - "<<v.getPlaca()<<endl;
+
+    estacionamiento.pop_front();
+    cout<<"Después de salida:\n";
+    for(auto &v:estacionamiento) cout<<" - "<<v.getPlaca()<<endl;
+    return 0;
+}

@@ -1,0 +1,16 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main(){
+    string texto = "algoritmos y estructuras de datos";
+    map<char,int> freq;
+    for(char c : texto){
+        if(c != ' ') freq[c]++;
+    }
+
+    for(auto& p : freq)
+        cout << p.first << " : " << p.second << endl;
+
+    return 0;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Vuelo {
+    string codigo;
+    int asientos, reservados;
+public:
+    Vuelo(string c, int a):codigo(c),asientos(a),reservados(0){}
+    bool reservar(){
+        if(reservados<asientos){
+            reservados++;
+            return true;
+        }
+        return false;
+    }
+    void mostrar(){ cout<<"Vuelo "<<codigo<<" - "<<reservados<<"/"<<asientos<<" asientos ocupados\n"; }
+};
+
+int main(){
+    vector<Vuelo> vuelos={ {"EC123",5},{"EC999",3} };
+    vuelos[0].reservar(); vuelos[0].reservar(); vuelos[1].reservar();
+    for(auto &v:vuelos) v.mostrar();
+    return 0;
+}

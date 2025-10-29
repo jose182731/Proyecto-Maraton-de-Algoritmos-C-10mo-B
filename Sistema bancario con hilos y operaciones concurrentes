@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+using namespace std;
+
+mutex mtx;
+class CuentaBancaria {
+    string titular; double saldo;
+public:
+    CuentaBancaria(string t,double s):titular(t),saldo(s){}
+    void depositar(double m){ lock_guard<mutex> lock(mtx); saldo += m; }
+    void retirar(double m){ lock_guard<mutex> lock(mtx); if(saldo >= m) saldo -= m; }
+    void mostrar(){ cout << titular << " - Saldo: " << saldo << endl; }
+};
+
+int main(){
+    vector<CuentaBancaria> cuentas={{"Ana",500},{"Luis",1000}};
+    thread t1([&]{ cuentas[0].depositar(200); });
+    thread t2([&]{ cuentas[1].retirar(300); });
+    t1.join(); t2.join();
+
+    for(auto &c:cuentas) c.mostrar();
+    return 0;
+}

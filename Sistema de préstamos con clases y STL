@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Libro {
+    string titulo;
+    bool prestado;
+public:
+    Libro(string t):titulo(t),prestado(false){}
+    void prestar(){ prestado=true; }
+    void devolver(){ prestado=false; }
+    void mostrar(){ cout<<titulo<<" -> "<<(prestado?"Prestado":"Disponible")<<endl; }
+};
+
+int main(){
+    vector<Libro> biblioteca={{"C++ Avanzado"},{"Algoritmos"}};
+    biblioteca[0].prestar();
+    for(auto &l:biblioteca) l.mostrar();
+    return 0;
+}

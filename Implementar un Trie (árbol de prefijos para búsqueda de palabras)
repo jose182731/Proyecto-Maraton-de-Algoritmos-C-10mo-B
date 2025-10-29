@@ -1,0 +1,37 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+struct NodoTrie{
+    map<char,NodoTrie*> hijos;
+    bool finPalabra=false;
+};
+
+void insertar(NodoTrie* raiz,string palabra){
+    NodoTrie* actual=raiz;
+    for(char c:palabra){
+        if(!actual->hijos[c]) actual->hijos[c]=new NodoTrie();
+        actual=actual->hijos[c];
+    }
+    actual->finPalabra=true;
+}
+
+bool buscar(NodoTrie* raiz,string palabra){
+    NodoTrie* actual=raiz;
+    for(char c:palabra){
+        if(!actual->hijos[c]) return false;
+        actual=actual->hijos[c];
+    }
+    return actual->finPalabra;
+}
+
+int main(){
+    NodoTrie* raiz=new NodoTrie();
+    insertar(raiz,"casa");
+    insertar(raiz,"carro");
+    insertar(raiz,"computadora");
+
+    cout<<"Buscar 'carro': "<<(buscar(raiz,"carro")?"Encontrado":"No encontrado")<<endl;
+    cout<<"Buscar 'cable': "<<(buscar(raiz,"cable")?"Encontrado":"No encontrado")<<endl;
+    return 0;
+}

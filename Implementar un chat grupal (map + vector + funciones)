@@ -1,0 +1,24 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+void enviarMensaje(map<string, vector<string>>& chat, string usuario, string msg){
+    chat[usuario].push_back(msg);
+}
+
+void mostrarChat(const map<string, vector<string>>& chat){
+    for(auto &u:chat){
+        cout<<u.first<<":\n";
+        for(auto &m:u.second) cout<<"  > "<<m<<endl;
+    }
+}
+
+int main(){
+    map<string, vector<string>> chat;
+    enviarMensaje(chat,"Ana","Hola grupo!");
+    enviarMensaje(chat,"Luis","¡Buenas tardes!");
+    enviarMensaje(chat,"Marta","¿Listos para la reunión?");
+    mostrarChat(chat);
+    return 0;
+}

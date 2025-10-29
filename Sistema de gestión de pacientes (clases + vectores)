@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Paciente {
+    string nombre;
+    int edad;
+public:
+    Paciente(string n,int e):nombre(n),edad(e){}
+    void mostrar(){ cout<<nombre<<" - "<<edad<<" años"<<endl; }
+};
+
+int main(){
+    vector<Paciente> hospital;
+    hospital.push_back(Paciente("Carlos",30));
+    hospital.push_back(Paciente("Laura",25));
+
+    for(auto &p:hospital) p.mostrar();
+    return 0;
+}

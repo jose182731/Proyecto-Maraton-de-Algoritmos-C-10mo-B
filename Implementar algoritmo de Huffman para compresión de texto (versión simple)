@@ -1,0 +1,45 @@
+#include <iostream>
+#include <queue>
+#include <map>
+using namespace std;
+
+struct Nodo {
+    char c;
+    int f;
+    Nodo *izq, *der;
+    Nodo(char ch, int freq){ c=ch; f=freq; izq=der=NULL; }
+};
+
+struct cmp {
+    bool operator()(Nodo* a, Nodo* b){
+        return a->f > b->f;
+    }
+};
+
+void imprimirCodigos(Nodo* raiz, string s){
+    if(!raiz) return;
+    if(!raiz->izq && !raiz->der) cout << raiz->c << ": " << s << endl;
+    imprimirCodigos(raiz->izq, s + "0");
+    imprimirCodigos(raiz->der, s + "1");
+}
+
+int main(){
+    string texto="huffman compression";
+    map<char,int> freq;
+    for(char c:texto) freq[c]++;
+
+    priority_queue<Nodo*,vector<Nodo*>,cmp> pq;
+    for(auto &p:freq) pq.push(new Nodo(p.first,p.second));
+
+    while(pq.size()>1){
+        Nodo *izq=pq.top(); pq.pop();
+        Nodo *der=pq.top(); pq.pop();
+        Nodo *nuevo=new Nodo('\0',izq->f+der->f);
+        nuevo->izq=izq; nuevo->der=der;
+        pq.push(nuevo);
+    }
+
+    cout << "Códigos Huffman:\n";
+    imprimirCodigos(pq.top(),"");
+    return 0;
+}

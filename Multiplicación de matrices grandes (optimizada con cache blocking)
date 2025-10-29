@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    const int N=128, B=32;
+    vector<vector<int>> A(N,vector<int>(N,1)),Bmat(N,vector<int>(N,2)),C(N,vector<int>(N,0));
+    for(int i0=0;i0<N;i0+=B)
+        for(int j0=0;j0<N;j0+=B)
+            for(int k0=0;k0<N;k0+=B)
+                for(int i=i0;i<min(N,i0+B);i++)
+                    for(int k=k0;k<min(N,k0+B);k++)
+                        for(int j=j0;j<min(N,j0+B);j++)
+                            C[i][j]+=A[i][k]*Bmat[k][j];
+    cout<<"Elemento C[0][0]="<<C[0][0]<<"\n";
+    return 0;
+}

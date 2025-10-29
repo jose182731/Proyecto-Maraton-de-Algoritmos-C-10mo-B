@@ -1,0 +1,19 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string,string> agenda;
+    agenda["Ana"]="0991234567";
+    agenda["Luis"]="0987654321";
+    agenda["Carlos"]="0971122334";
+
+    string nombre;
+    cout<<"Buscar contacto: "; cin>>nombre;
+    if(agenda.count(nombre))
+        cout<<"Teléfono de "<<nombre<<": "<<agenda[nombre]<<endl;
+    else
+        cout<<"No encontrado.\n";
+    return 0;
+}

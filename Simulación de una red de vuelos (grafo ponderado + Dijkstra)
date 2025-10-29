@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+typedef pair<int,int> Par;
+#define INF 1e9
+
+void dijkstra(vector<vector<Par>>& grafo,int origen){
+    vector<int> dist(grafo.size(),INF);
+    dist[origen]=0;
+    priority_queue<Par,vector<Par>,greater<Par>> pq;
+    pq.push({0,origen});
+
+    while(!pq.empty()){
+        int d=pq.top().first, u=pq.top().second;
+        pq.pop();
+        for(auto [v,peso]:grafo[u])
+            if(d+peso<dist[v]){
+                dist[v]=d+peso;
+                pq.push({dist[v],v});
+            }
+    }
+
+    cout<<"Distancias desde aeropuerto "<<origen<<":\n";
+    for(int i=0;i<dist.size();i++) cout<<i<<": "<<dist[i]<<endl;
+}
+
+int main(){
+    vector<vector<Par>> vuelos(5);
+    vuelos[0]={{1,300},{2,200}};
+    vuelos[1]={{2,100},{3,400}};
+    vuelos[2]={{3,150},{4,500}};
+    vuelos[3]={{4,100}};
+    vuelos[4]={};
+
+    dijkstra(vuelos,0);
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Arista {
+    int u, v, peso;
+    bool operator<(const Arista& otra) const { return peso < otra.peso; }
+};
+
+int encontrar(vector<int>& padre, int i){
+    if(padre[i]==i) return i;
+    return padre[i]=encontrar(padre, padre[i]);
+}
+
+void unir(vector<int>& padre, vector<int>& rango, int x, int y){
+    x=encontrar(padre,x);
+    y=encontrar(padre,y);
+    if(rango[x]<rango[y]) padre[x]=y;
+    else if(rango[x]>rango[y]) padre[y]=x;
+    else { padre[y]=x; rango[x]++; }
+}
+
+int main(){
+    int V=4;
+    vector<Arista> aristas={{0,1,10},{0,2,6},{0,3,5},{1,3,15},{2,3,4}};
+    sort(aristas.begin(),aristas.end());
+
+    vector<int> padre(V), rango(V,0);
+    for(int i=0;i<V;i++) padre[i]=i;
+
+    vector<Arista> resultado;
+    for(auto &a:aristas){
+        int x=encontrar(padre,a.u);
+        int y=encontrar(padre,a.v);
+        if(x!=y){
+            resultado.push_back(a);
+            unir(padre,rango,x,y);
+        }
+    }
+
+    cout<<"Aristas del Árbol de Expansión Mínima:\n";
+    for(auto &a:resultado)
+        cout<<a.u<<" - "<<a.v<<" : "<<a.peso<<"\n";
+    return 0;
+}

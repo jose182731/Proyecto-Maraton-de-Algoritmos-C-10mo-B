@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool dfs(int u, vector<vector<int>>&g, vector<int>&vis){
+    vis[u]=1;
+    for(int v:g[u]){
+        if(vis[v]==1) return true;
+        if(vis[v]==0 && dfs(v,g,vis)) return true;
+    }
+    vis[u]=2;
+    return false;
+}
+int main(){
+    vector<vector<int>> g={{1},{2},{3},{1}};
+    vector<int> vis(4,0);
+    bool hasCycle=false;
+    for(int i=0;i<4;i++)
+        if(!vis[i] && dfs(i,g,vis)) hasCycle=true;
+    cout<<(hasCycle?"Ciclo detectado\n":"Sin ciclos\n");
+    return 0;
+}

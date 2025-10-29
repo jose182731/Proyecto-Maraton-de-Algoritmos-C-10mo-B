@@ -1,0 +1,13 @@
+#include <iostream>
+#include <fstream>
+#include <ctime>
+using namespace std;
+
+int main(){
+    ofstream log("log.txt", ios::app);
+    time_t now = time(0);
+    log << "Evento registrado: " << ctime(&now);
+    log.close();
+    cout << "Log escrito correctamente.\n";
+    return 0;
+}

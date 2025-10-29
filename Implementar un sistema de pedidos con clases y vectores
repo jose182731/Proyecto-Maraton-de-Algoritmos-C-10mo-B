@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Pedido {
+    string cliente;
+    vector<string> productos;
+public:
+    Pedido(string c):cliente(c){}
+    void agregar(string p){ productos.push_back(p); }
+    void mostrar(){
+        cout<<"Cliente: "<<cliente<<"\nProductos:\n";
+        for(auto &p:productos) cout<<" - "<<p<<endl;
+    }
+};
+
+int main(){
+    Pedido p("Laura");
+    p.agregar("Pizza");
+    p.agregar("Refresco");
+    p.agregar("Postre");
+    p.mostrar();
+    return 0;
+}

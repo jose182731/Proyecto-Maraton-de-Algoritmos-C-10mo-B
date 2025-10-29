@@ -1,0 +1,19 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+int main(){
+    map<string, vector<float>> notas = {
+        {"Ana",{9.5,8.0,10}},
+        {"Luis",{7.0,6.5,8.5}},
+        {"Maria",{10,9.5,9.0}}
+    };
+
+    for(auto &p : notas){
+        float suma=0;
+        for(float n : p.second) suma+=n;
+        cout << p.first << " promedio: " << suma/p.second.size() << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int maxItems(vector<int>& volumen, vector<int>& valor, int capacidad){
+    int n=volumen.size();
+    vector<vector<int>> dp(n+1,vector<int>(capacidad+1,0));
+    for(int i=1;i<=n;i++)
+        for(int j=0;j<=capacidad;j++)
+            dp[i][j]=(volumen[i-1]<=j) ? max(dp[i-1][j], valor[i-1]+dp[i-1][j-volumen[i-1]]) : dp[i-1][j];
+    return dp[n][capacidad];
+}
+
+int main(){
+    vector<int> volumen={3,4,5};
+    vector<int> valor={30,50,60};
+    int capacidad=8;
+    cout<<"Valor máximo almacenado: "<<maxItems(volumen,valor,capacidad)<<endl;
+    return 0;
+}

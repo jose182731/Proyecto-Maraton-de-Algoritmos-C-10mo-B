@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Libro {
+public:
+    string titulo, autor;
+    bool prestado;
+    Libro(string t, string a): titulo(t), autor(a), prestado(false){}
+};
+
+int main(){
+    vector<Libro> biblioteca = {{"1984","Orwell"},{"It","King"},{"Cien años de soledad","García Márquez"}};
+    string buscar;
+    cout << "Buscar libro: ";
+    getline(cin,buscar);
+
+    for(auto &l : biblioteca){
+        if(l.titulo == buscar){
+            cout << "Libro encontrado: " << l.titulo << " de " << l.autor << endl;
+            if(!l.prestado){ l.prestado=true; cout << "Libro prestado.\n"; }
+            else cout << "Ya estaba prestado.\n";
+        }
+    }
+    return 0;
+}

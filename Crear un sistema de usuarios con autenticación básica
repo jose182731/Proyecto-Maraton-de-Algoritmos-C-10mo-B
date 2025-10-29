@@ -1,0 +1,20 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string,string> usuarios;
+    usuarios["admin"]="1234";
+    usuarios["user"]="pass";
+
+    string u,p;
+    cout<<"Usuario: "; cin>>u;
+    cout<<"Contraseña: "; cin>>p;
+
+    if(usuarios.count(u) && usuarios[u]==p)
+        cout<<"Acceso permitido.\n";
+    else
+        cout<<"Usuario o contraseña incorrectos.\n";
+    return 0;
+}

@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+template <typename T>
+class Pila{
+    vector<T> datos;
+public:
+    void push(T v){ datos.push_back(v); }
+    void pop(){ if(!datos.empty()) datos.pop_back(); }
+    T top(){ return datos.back(); }
+    bool empty(){ return datos.empty(); }
+};
+
+int main(){
+    Pila<int> p;
+    p.push(10); p.push(20);
+    cout << "Tope: " << p.top() << endl;
+    p.pop();
+    cout << "Tope ahora: " << p.top() << endl;
+    return 0;
+}

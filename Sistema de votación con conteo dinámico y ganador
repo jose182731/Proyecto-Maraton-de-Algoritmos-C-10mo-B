@@ -1,0 +1,18 @@
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(){
+    map<string,int> votos;
+    votos["Ana"]++; votos["Luis"]++; votos["Ana"]++; votos["Marta"]++;
+
+    string ganador;
+    int maxVotos=0;
+    for(auto &v:votos){
+        cout<<v.first<<": "<<v.second<<" votos\n";
+        if(v.second>maxVotos){ maxVotos=v.second; ganador=v.first; }
+    }
+    cout<<"Ganador: "<<ganador<<endl;
+    return 0;
+}

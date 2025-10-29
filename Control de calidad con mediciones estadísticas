@@ -1,0 +1,16 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <cmath>
+using namespace std;
+
+int main(){
+    vector<double> medidas={9.9,10.1,9.8,10.0,10.2};
+    double media=accumulate(medidas.begin(),medidas.end(),0.0)/medidas.size();
+    double varianza=0;
+    for(double x:medidas) varianza += pow(x-media,2);
+    varianza/=medidas.size();
+
+    cout<<"Media: "<<media<<"\nDesviación estándar: "<<sqrt(varianza)<<endl;
+    return 0;
+}

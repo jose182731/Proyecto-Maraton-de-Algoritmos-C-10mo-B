@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Libro { string titulo, autor; bool prestado=false; };
+
+class Biblioteca {
+    vector<Libro> libros;
+public:
+    void agregar(Libro l){ libros.push_back(l); }
+    void prestar(string t){
+        for(auto &l:libros)
+            if(l.titulo==t && !l.prestado){ l.prestado=true; cout<<"Prestado: "<<t<<"\n"; return; }
+        cout<<"Libro no disponible.\n";
+    }
+    void listar(){
+        for(auto &l:libros)
+            cout<<l.titulo<<" ("<<l.autor<<") - "<<(l.prestado?"Prestado":"Disponible")<<"\n";
+    }
+};
+
+int main(){
+    Biblioteca b;
+    b.agregar({"1984","George Orwell"});
+    b.agregar({"El Hobbit","J.R.R. Tolkien"});
+    b.prestar("1984");
+    b.listar();
+    return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+class Cuenta {
+protected:
+    double saldo;
+public:
+    Cuenta(double s=0): saldo(s){}
+    virtual void depositar(double m){ saldo += m; }
+    virtual void retirar(double m){ saldo -= m; }
+    virtual void mostrar(){ cout << "Saldo: " << saldo << endl; }
+};
+
+class CuentaAhorro : public Cuenta {
+    double interes;
+public:
+    CuentaAhorro(double s, double i): Cuenta(s), interes(i){}
+    void aplicarInteres(){ saldo += saldo*interes; }
+    void mostrar() override {
+        cout << "Cuenta Ahorro - Saldo: " << saldo << " | Interés: " << interes*100 << "%\n";
+    }
+};
+
+int main(){
+    CuentaAhorro c(1000,0.05);
+    c.depositar(500);
+    c.aplicarInteres();
+    c.mostrar();
+    return 0;
+}

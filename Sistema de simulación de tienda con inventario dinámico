@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Producto { string nombre; double precio; int stock; };
+
+class Tienda {
+    vector<Producto> inv;
+public:
+    void agregar(Producto p){ inv.push_back(p); }
+    void vender(string n,int cant){
+        for(auto &p:inv)
+            if(p.nombre==n && p.stock>=cant){
+                p.stock-=cant;
+                cout<<"Venta de "<<cant<<" "<<n<<" completada\n";
+                return;
+            }
+        cout<<"Stock insuficiente o producto no encontrado\n";
+    }
+    void mostrar(){
+        for(auto &p:inv)
+            cout<<p.nombre<<" - $"<<p.precio<<" ("<<p.stock<<")\n";
+    }
+};
+
+int main(){
+    Tienda t;
+    t.agregar({"Pan",0.8,10});
+    t.agregar({"Leche",1.2,5});
+    t.vender("Pan",3);
+    t.mostrar();
+    return 0;
+}

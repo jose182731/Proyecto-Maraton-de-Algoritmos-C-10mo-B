@@ -1,0 +1,25 @@
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <vector>
+using namespace std;
+
+struct Tarea { string nombre; int duracion; };
+
+void ejecutar(Tarea t){
+    auto inicio = chrono::system_clock::now();
+    cout<<"Iniciando "<<t.nombre<<endl;
+    this_thread::sleep_for(chrono::seconds(t.duracion));
+    auto fin = chrono::system_clock::now();
+    chrono::duration<double> tiempo = fin - inicio;
+    cout<<"Completada "<<t.nombre<<" | Tiempo real: "<<tiempo.count()<<" s\n";
+}
+
+int main(){
+    vector<Tarea> tareas={{"Descarga",3},{"Procesamiento",5},{"Backup",2}};
+    vector<thread> hilos;
+    for(auto &t:tareas) hilos.push_back(thread(ejecutar,t));
+    for(auto &h:hilos) h.join();
+    cout<<"Todas las tareas finalizadas.\n";
+    return 0;
+}

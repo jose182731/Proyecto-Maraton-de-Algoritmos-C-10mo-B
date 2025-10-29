@@ -1,0 +1,16 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main(){
+    multimap<string, float> notas;
+    notas.insert({"Ana", 8.5});
+    notas.insert({"Luis", 9.0});
+    notas.insert({"Ana", 9.3});
+    notas.insert({"Luis", 7.5});
+
+    for(auto& p : notas)
+        cout << p.first << " -> " << p.second << endl;
+
+    return 0;
+}

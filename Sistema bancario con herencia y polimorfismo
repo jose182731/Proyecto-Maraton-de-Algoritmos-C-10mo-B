@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Cuenta {
+protected:
+    string titular;
+    double saldo;
+public:
+    Cuenta(string t,double s):titular(t),saldo(s){}
+    virtual void operar(double monto)=0;
+    virtual void mostrar(){ cout<<titular<<" | Saldo: "<<saldo<<endl; }
+};
+
+class Ahorros : public Cuenta {
+public:
+    Ahorros(string t,double s):Cuenta(t,s){}
+    void operar(double monto) override { saldo+=monto; }
+};
+
+class Corriente : public Cuenta {
+public:
+    Corriente(string t,double s):Cuenta(t,s){}
+    void operar(double monto) override { saldo-=monto*1.01; } // comisión
+};
+
+int main(){
+    vector<Cuenta*> cuentas;
+    cuentas.push_back(new Ahorros("Luis",500));
+    cuentas.push_back(new Corriente("Ana",1000));
+
+    cuentas[0]->operar(200);
+    cuentas[1]->operar(300);
+    for(auto c:cuentas){ c->mostrar(); delete c; }
+    return 0;
+}

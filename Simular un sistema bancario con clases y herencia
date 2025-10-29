@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+class Cuenta{
+protected:
+    double saldo;
+public:
+    Cuenta(double s=0): saldo(s){}
+    virtual void depositar(double m){ saldo+=m; }
+    virtual void mostrar(){ cout << "Saldo: " << saldo << endl; }
+};
+
+class CuentaAhorros : public Cuenta{
+    double interes;
+public:
+    CuentaAhorros(double s, double i): Cuenta(s), interes(i){}
+    void aplicarInteres(){ saldo += saldo * interes; }
+};
+
+int main(){
+    CuentaAhorros c(1000,0.05);
+    c.depositar(200);
+    c.aplicarInteres();
+    c.mostrar();
+    return 0;
+}

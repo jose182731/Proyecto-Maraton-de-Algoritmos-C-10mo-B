@@ -1,0 +1,19 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Estudiante{
+    string nombre;
+    float promedio;
+public:
+    Estudiante(string n, float p):nombre(n),promedio(p){}
+    void mostrar(){ cout<<nombre<<" - Promedio: "<<promedio<<endl; }
+};
+
+int main(){
+    vector<Estudiante> alumnos={
+        {"Ana",8.5},{"Luis",9.2},{"Marta",7.9}
+    };
+    for(auto &a:alumnos) a.mostrar();
+    return 0;
+}

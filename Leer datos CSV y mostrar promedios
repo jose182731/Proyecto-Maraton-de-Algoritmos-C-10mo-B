@@ -1,0 +1,18 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main(){
+    ifstream file("notas.csv");
+    string linea; double total=0; int cont=0;
+    while(getline(file,linea)){
+        stringstream ss(linea);
+        string nombre; double nota;
+        getline(ss,nombre,','); ss>>nota;
+        total+=nota; cont++;
+    }
+    cout<<"Promedio general: "<<total/cont<<endl;
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int maxTareas(vector<int>& duraciones, int tiempoMax){
+    int n = duraciones.size();
+    vector<int> dp(tiempoMax+1,0);
+    for(int i=0;i<n;i++)
+        for(int j=tiempoMax;j>=duraciones[i];j--)
+            dp[j] = max(dp[j], dp[j-duraciones[i]] + duraciones[i]);
+    return dp[tiempoMax];
+}
+
+int main(){
+    vector<int> duraciones = {2, 3, 4, 5};
+    int tiempoMax = 7;
+    cout << "Máximo tiempo utilizado: " << maxTareas(duraciones, tiempoMax) << endl;
+    return 0;
+}

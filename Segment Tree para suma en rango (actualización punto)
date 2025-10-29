@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct SegTree{
+    int n; vector<long long> st;
+    SegTree(int sz):n(sz),st(4*sz,0){}
+    void build(int p,int l,int r, vector<int>&a){
+        if(l==r){ st[p]=a[l]; return; }
+        int m=(l+r)/2; build(p*2,l,m,a); build(p*2+1,m+1,r,a);
+        st[p]=st[p*2]+st[p*2+1];
+    }
+    long long query(int p,int l,int r,int i,int j){
+        if(i>r||j<l) return 0;
+        if(i<=l&&r<=j) return st[p];
+        int m=(l+r)/2;
+        return query(p*2,l,m,i,j)+query(p*2+1,m+1,r,i,j);
+    }
+    void update(int p,int l,int r,int idx,int val){
+        if(l==r){ st[p]=val; return; }
+        int m=(l+r)/2;
+        if(idx<=m) update(p*2,l,m,idx,val); else update(p*2+1,m+1,r,idx,val);
+        st[p]=st[p*2]+st[p*2+1];
+    }
+};
+int main(){
+    vector<int> a={1,2,3,4,5};
+    SegTree st(a.size());
+    st.build(1,0,a.size()-1,a);
+    cout<<"Suma [1,3]: "<<st.query(1,0,a.size()-1,1,3)<<"\n";
+    st.update(1,0,a.size()-1,2,10);
+    cout<<"Suma [1,3] tras update: "<<st.query(1,0,a.size()-1,1,3)<<"\n";
+    return 0;
+}
